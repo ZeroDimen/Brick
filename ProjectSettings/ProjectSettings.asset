@@ -161,7 +161,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.DefaultCompany.com.unity.template.mobile2D
+    Android: com.PorkEmpire.Brick
     Lumin: com.DefaultCompany.com.unity.template.mobile2D
     Standalone: com.DefaultCompany.com.unity.template.mobile2D
     iPhone: com.DefaultCompany.com.unity.template.mobile2D
@@ -814,4 +814,4 @@ PlayerSettings:
   hmiLoadingImage: {fileID: 0}
   platformRequiresReadableAssets: 0
   virtualTexturingSupportEnabled: 0
-  insecureHttpOption: 0
+  insecureHttpOption: 2
