@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public static int power = 10;
-
     GameObject previewBall;     // 공의 동선을 보여줄 공
     Rigidbody2D rigid;
     RaycastHit2D hit;
@@ -29,6 +27,13 @@ public class Ball : MonoBehaviour
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = (mousePos - (Vector2)transform.position).normalized;
 
+            if (direction.y <= 0)
+            {
+                previewBall.SetActive(false);
+                lineRenderer.enabled = false;
+                return;
+            }
+
             // 일반적인 직선이 아닌 원을 발사함
             hit = Physics2D.CircleCast(transform.position, 0.25f, direction, rayDistance, layerMask);
 
@@ -46,7 +51,7 @@ public class Ball : MonoBehaviour
             previewBall.SetActive(true);
             lineRenderer.enabled = true;
         }
-        else if (Input.GetMouseButtonUp(0)) // real ball
+        else if (Input.GetMouseButtonUp(0) && direction.y > 0) // real ball
         {
             rigid.velocity = direction * 10f;
         }

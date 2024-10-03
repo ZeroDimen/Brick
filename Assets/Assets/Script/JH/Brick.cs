@@ -8,6 +8,14 @@ public class Brick : MonoBehaviour
     float hp;
     float curHp;
     Scrollbar scrollbar;
+    private float ball_Dmg = 1;
+    
+    public static Brick instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -25,7 +33,7 @@ public class Brick : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ball"))
         {
-            curHp -= Ball.power;
+            curHp -= ball_Dmg;
             if (curHp <= 0)
                 Destroy(gameObject);
             else
@@ -34,5 +42,10 @@ public class Brick : MonoBehaviour
                 scrollbar.size = curHp / hp;
             }
         }
+    }
+
+    public void ChangeDmg(float _Dmg)
+    {
+        ball_Dmg = _Dmg;
     }
 }
