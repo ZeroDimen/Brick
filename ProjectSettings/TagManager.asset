@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - box
+  - wall
+  - bbox
+  - ball
   layers:
   - Default
   - TransparentFX
@@ -12,12 +16,12 @@ TagManager:
   - Water
   - UI
   - 
+  - box
+  - bbox
+  - wall
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - ball
   - 
   - 
   - 
