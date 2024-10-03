@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static Player_Data;
@@ -6,55 +7,25 @@ public class Json_Test : MonoBehaviour
 {
     public static void initData() // 테스트로 사용할 정보로 데이터 초기화
     {
+        DateTime NTP_Time = NTP_Test.GetNetworkTime();
         GameData gameData = new GameData()
         {
-            playerData = new PlayerData("HI", 30000),
+            playerData = new PlayerData("HI", 30000, 5),
             ballDataList = new BallDataList
             {
                 Balls = new List<BallData>
                 {
-                    new BallData
-                    {
-                        BallName = "Ball 1", BallLevel = 1, BallCost = 1, BallDamage = 7, BallCriticalDamage = 11,
-                        BallCriticalChance = 9
-                    },
-                    new BallData
-                    {
-                        BallName = "Ball 2", BallLevel = 0, BallCost = 2, BallDamage = 8, BallCriticalDamage = 10,
-                        BallCriticalChance = 9
-                    },
-                    new BallData
-                    {
-                        BallName = "Ball 3", BallLevel = 0, BallCost = 3, BallDamage = 9, BallCriticalDamage = 10,
-                        BallCriticalChance = 9
-                    },
-                    new BallData
-                    {
-                        BallName = "Ball 4", BallLevel = 0, BallCost = 4, BallDamage = 10, BallCriticalDamage = 10,
-                        BallCriticalChance = 9
-                    },
-                    new BallData
-                    {
-                        BallName = "Ball 5", BallLevel = 0, BallCost = 5, BallDamage = 10, BallCriticalDamage = 10,
-                        BallCriticalChance = 9
-                    },
-                    new BallData
-                    {
-                        BallName = "Ball 6", BallLevel = 0, BallCost = 6, BallDamage = 10, BallCriticalDamage = 10,
-                        BallCriticalChance = 9
-                    },
-                    new BallData
-                    {
-                        BallName = "Ball 7", BallLevel = 0, BallCost = 7, BallDamage = 10, BallCriticalDamage = 10,
-                        BallCriticalChance = 9
-                    },
-                    new BallData
-                    {
-                        BallName = "Ball 8", BallLevel = 0, BallCost = 8, BallDamage = 10, BallCriticalDamage = 10,
-                        BallCriticalChance = 9
-                    }
+                    new BallData("Ball 1",1,1,10,11,9),
+                    new BallData("Ball 2",1,2,7,11,9),
+                    new BallData("Ball 3",1,3,7,11,9),
+                    new BallData("Ball 4",1,4,7,11,9),
+                    new BallData("Ball 5",1,5,7,11,9),
+                    new BallData("Ball 6",1,6,7,11,9),
+                    new BallData("Ball 7",1,7,7,11,9),
+                    new BallData("Ball 8",1,8,7,11,9)
                 }
-            }
+            },
+            timeData = new TimeData(NTP_Time.Year, NTP_Time.Month,NTP_Time.Day,NTP_Time.Hour,NTP_Time.Minute,NTP_Time.Second)
         };
         SaveSystem.SavePlayerData(gameData, "save_1101");
         Debug.Log("initData"); //데이터를 정확히 초기화 하였는지 확인하기 위한 로그 출력
@@ -70,12 +41,15 @@ public class Json_Test : MonoBehaviour
         }
         else // 데이터를 정확히 읽었는지 확인하기 위한 로그 출력
         {
-            Debug.Log("Name : " + gameData.playerData.Name + ", Money : " + gameData.playerData.Money);
+            Debug.Log("Name : " + gameData.playerData.Name + ", Money : " + gameData.playerData.Money + ", Stamina : " + gameData.playerData.Stamina);
             foreach (var ball in gameData.ballDataList.Balls)
             {
                 Debug.Log("BallName : " + ball.BallName + ", BallLeveL : " + ball.BallLevel + ", BallCost : " +
                           ball.BallCost);
             }
+
+            Debug.Log(gameData.timeData.Time_Year+":"+ gameData.timeData.Time_Month+":"+ gameData.timeData.Time_Day);
+            Debug.Log(gameData.timeData.Time_All_Second);
         }
     }
 }

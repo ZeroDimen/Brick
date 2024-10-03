@@ -1,8 +1,8 @@
 using UnityEngine;
-
 public class Button_UI : MonoBehaviour
 {
     [SerializeField] private GameObject[] UI_Buttons;
+    
     
     public void OnClick1()
     {
@@ -52,5 +52,10 @@ public class Button_UI : MonoBehaviour
             UI_Buttons[i].SetActive(false);
         }
         UI_Buttons[3].SetActive(true);
+    }
+
+    public void Use_Stamina()
+    {
+        
     }
 }
