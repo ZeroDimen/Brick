@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    public static int power = 10;
+
     GameObject previewBall;     // 공의 동선을 보여줄 공
     Rigidbody2D rigid;
     RaycastHit2D hit;
@@ -60,11 +62,5 @@ public class Ball : MonoBehaviour
             transform.position = new Vector3(0, -4.5f, 0);
             rigid.velocity = Vector3.zero;
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("box"))
-            Destroy(other.gameObject);
     }
 }
