@@ -8,8 +8,8 @@ public class Brick : MonoBehaviour
     float hp;
     float curHp;
     Scrollbar scrollbar;
-    private float ball_Dmg = 1;
-    
+    private static float ball_Dmg = 10;
+
     public static Brick instance;
 
     private void Awake()
