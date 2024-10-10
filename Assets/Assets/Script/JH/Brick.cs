@@ -1,13 +1,15 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Brick : MonoBehaviour
 {
+    protected static List<Brick> Bricks = new List<Brick>();
     public TMP_Text tMP_Text;
-    float hp;
-    float curHp;
-    Scrollbar scrollbar;
+    protected float hp;
+    protected float curHp;
+    private Scrollbar scrollbar;
     private static float ball_Dmg = 10;
 
     public static Brick instance;
@@ -17,30 +19,35 @@ public class Brick : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
+    protected virtual void Start()
+    {
+        Bricks.Add(this);
+        Hp_Setting();
+    }
+
+    private void Hp_Setting()
     {
         tMP_Text = transform.GetChild(0).GetComponent<TMP_Text>();
         scrollbar = transform.GetChild(1).GetChild(0).GetComponent<Scrollbar>();
+
         tMP_Text.rectTransform.position = transform.position;
         scrollbar.transform.position = Camera.main.WorldToScreenPoint(transform.position - Vector3.up * 0.45f);
-        curHp = hp = 30;
+
         tMP_Text.text = $"{hp}";
+
         transform.GetChild(0).gameObject.SetActive(true);
         transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    public virtual void Hit()
     {
-        if (other.gameObject.CompareTag("ball"))
+        curHp -= ball_Dmg;
+        if (curHp <= 0)
+            Destroy(gameObject);
+        else
         {
-            curHp -= ball_Dmg;
-            if (curHp <= 0)
-                Destroy(gameObject);
-            else
-            {
-                tMP_Text.text = $"{curHp}";
-                scrollbar.size = curHp / hp;
-            }
+            tMP_Text.text = $"{curHp}";
+            scrollbar.size = curHp / hp;
         }
     }
 
