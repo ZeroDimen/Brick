@@ -25,11 +25,12 @@ public class Json_Test : MonoBehaviour
                     new BallData("Ball 8",1,8,7,11,9)
                 }
             },
-            timeData = new TimeData(NTP_Time.Year, NTP_Time.Month,NTP_Time.Day,NTP_Time.Hour,NTP_Time.Minute,NTP_Time.Second)
+            timeData = new TimeData(NTP_Time.ToString("yyyy-MM-dd HH:mm:ss"), 0)
         };
         SaveSystem.SavePlayerData(gameData, "save_1101");
         Debug.Log("initData"); //데이터를 정확히 초기화 하였는지 확인하기 위한 로그 출력
     }
+    
 
     public static void loadData()
     {
@@ -47,9 +48,7 @@ public class Json_Test : MonoBehaviour
                 Debug.Log("BallName : " + ball.BallName + ", BallLeveL : " + ball.BallLevel + ", BallCost : " +
                           ball.BallCost);
             }
-
-            Debug.Log(gameData.timeData.Time_Year+":"+ gameData.timeData.Time_Month+":"+ gameData.timeData.Time_Day);
-            Debug.Log(gameData.timeData.Time_All_Second);
+            Debug.Log(gameData.timeData.User_Time);
         }
     }
 }
