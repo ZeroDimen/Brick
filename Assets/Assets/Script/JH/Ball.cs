@@ -61,7 +61,7 @@ public class Ball : MonoBehaviour
             previewBall.SetActive(false);
         }
 
-
+        // 공 제자리로
         if (Input.GetKeyDown(KeyCode.Space))
         {
             transform.position = new Vector3(0, -4.5f, 0);

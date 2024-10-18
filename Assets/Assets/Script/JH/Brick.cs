@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class Brick : MonoBehaviour
 {
     protected static List<Brick> Bricks = new List<Brick>();
-    public TMP_Text tMP_Text;
+    protected TMP_Text tMP_Text;
     protected float hp;
     protected float curHp;
-    private Scrollbar scrollbar;
+    protected Scrollbar scrollbar;
     private static float ball_Dmg = 10;
 
     public static Brick instance;
