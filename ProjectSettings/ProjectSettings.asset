@@ -140,10 +140,7 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 1.0
-  preloadedAssets:
-  - {fileID: 2763481543963527041, guid: 262bee86493301c4c8333438dd0c0814, type: 2}
-  - {fileID: 11400000, guid: fabaa9ea6a7a678449456fe66bb6957f, type: 2}
-  - {fileID: 11400000, guid: 05b911578586fe04ebaa8dc782d374c1, type: 2}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -796,7 +793,8 @@ PlayerSettings:
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: LEVELPLAY_DEPENDENCIES_INSTALLED
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -884,7 +882,13 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -904,11 +908,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: a85ff63c-4f7e-4a1e-9ed7-6c97091db210
+  cloudProjectId: 226e9309-a06f-48e6-ba5e-6c0c3f349991
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Brick 2024-10-01_22-18-32
-  organizationId: khm6211
+  projectName: Brick
+  organizationId: life_is_tired
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

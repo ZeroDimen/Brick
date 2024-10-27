@@ -1,7 +1,9 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    public Camera miniCam;
     GameObject previewBall;     // 공의 동선을 보여줄 공
     Rigidbody2D rigid;
     RaycastHit2D hit;
@@ -9,8 +11,10 @@ public class Ball : MonoBehaviour
     LineRenderer lineRenderer;  // 공의 동선을 나타낼 선
     Vector2 mousePos;
     Vector2 direction;          // 공이 날아갈 방향
+    public static bool isTurn;
+    bool isShoot;
 
-    float rayDistance = 20f;
+    float rayDistance = 40f;
 
     private void Start()
     {
@@ -22,50 +26,72 @@ public class Ball : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButton(0))    // preview ball
+        if (isTurn)
         {
-            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            direction = (mousePos - (Vector2)transform.position).normalized;
-
-            if (direction.y <= 0)
+            if (Input.GetMouseButton(0) && !isShoot)    // preview ball
             {
-                previewBall.SetActive(false);
-                lineRenderer.enabled = false;
-                return;
+                // 마우스가 뷰포트 안인지 체크
+                mousePos = Input.mousePosition;
+                Vector3 viewportPos = miniCam.ScreenToViewportPoint(mousePos);
+                if (viewportPos.x < 0 || viewportPos.x > 1 || viewportPos.y < 0 || viewportPos.y > 1)
+                {
+                    lineRenderer.enabled = false;
+                    previewBall.SetActive(false);
+                    direction = Vector3.zero;
+                    return;
+                }
+
+                mousePos = miniCam.ScreenToWorldPoint(mousePos);
+                direction = (mousePos - (Vector2)transform.position).normalized;
+
+                if (direction.y <= 0.1f)
+                {
+                    previewBall.SetActive(false);
+                    lineRenderer.enabled = false;
+                    return;
+                }
+
+                // 일반적인 직선이 아닌 원을 발사함
+                hit = Physics2D.CircleCast(transform.position, 0.25f, direction, rayDistance, layerMask);
+
+                // CircleCast가 충돌했을때 원의 중심
+                previewBall.transform.position = hit.centroid;
+
+                // 반사각
+                Vector2 reflectDirection = Vector2.Reflect(direction, hit.normal);
+
+                // 두 직선에 필요한 3개의 점
+                lineRenderer.SetPosition(0, transform.position);
+                lineRenderer.SetPosition(1, hit.centroid);
+                lineRenderer.SetPosition(2, hit.centroid + reflectDirection.normalized * 3);
+
+                previewBall.SetActive(true);
+                lineRenderer.enabled = true;
             }
-
-            // 일반적인 직선이 아닌 원을 발사함
-            hit = Physics2D.CircleCast(transform.position, 0.25f, direction, rayDistance, layerMask);
-
-            // CircleCast가 충돌했을때 원의 중심
-            previewBall.transform.position = hit.centroid;
-
-            // 반사각
-            Vector2 reflectDirection = Vector2.Reflect(direction, hit.normal);
-
-            // 두 직선에 필요한 3개의 점
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, hit.centroid);
-            lineRenderer.SetPosition(2, hit.centroid + reflectDirection.normalized * 3);
-
-            previewBall.SetActive(true);
-            lineRenderer.enabled = true;
+            else if (Input.GetMouseButtonUp(0) && direction.y > 0.1f) // real ball
+            {
+                rigid.velocity = direction * 10f;
+                isShoot = true;
+            }
+            else
+            {
+                lineRenderer.enabled = false;
+                previewBall.SetActive(false);
+            }
         }
-        else if (Input.GetMouseButtonUp(0) && direction.y > 0) // real ball
-        {
-            rigid.velocity = direction * 10f;
-        }
-        else
-        {
-            lineRenderer.enabled = false;
-            previewBall.SetActive(false);
-        }
+    }
 
-        // 공 제자리로
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            transform.position = new Vector3(0, -4.5f, 0);
-            rigid.velocity = Vector3.zero;
-        }
+    public void Ball_Reset()
+    {
+        transform.position = new Vector3(0, -4f, 0);
+        rigid.velocity = Vector3.zero;
+        direction = Vector3.zero;
+        isShoot = false;
+    }
+
+    public void My_Turn()
+    {
+        Scroll.isTurn = false;
+        isTurn = true;
     }
 }
