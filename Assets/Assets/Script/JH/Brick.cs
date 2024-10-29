@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Brick : MonoBehaviour
 {
-    protected static List<Brick> Bricks = new List<Brick>();
+    public static List<Brick> Bricks = new List<Brick>();
     protected TMP_Text tMP_Text;
     protected float hp;
     protected float curHp;

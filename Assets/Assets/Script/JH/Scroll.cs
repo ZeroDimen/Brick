@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Scroll : MonoBehaviour
 {
+    public GameObject ball;
     Camera miniCam;
     Vector3 mousePos;
     Vector3 currentMousePos;
@@ -12,6 +12,8 @@ public class Scroll : MonoBehaviour
     float newPosY;
     float movement;
     bool isDrag;
+    public static bool thresholdFlag;
+    public static bool camSetFlag;
     public static bool isTurn = true;
     private void Awake()
     {
@@ -44,7 +46,7 @@ public class Scroll : MonoBehaviour
                 movement = currentMousePos.y - mousePos.y;
 
                 // 스크롤 범위
-                newPosY = Mathf.Clamp(transform.position.y - movement, 0, 22);
+                newPosY = Mathf.Clamp(transform.position.y - movement, 0.9f, 21.5f);
 
                 // 스크롤 이동
                 newPos = transform.position;
@@ -54,10 +56,50 @@ public class Scroll : MonoBehaviour
                 mousePos = currentMousePos;
             }
         }
+        else if (Ball.isShoot)
+        {
+            if (!camSetFlag)
+            {
+                transform.position = new Vector3(0, 0.9f, -10);
+                camSetFlag = true;
+            }
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (camSetFlag)
+        {
+            // 공이 아래로 떨어질때
+            if (ball.transform.position.y <= -4f)
+            {
+                // ball.transform.position = new Vector3(0, -4f, 0);
+                // transform.position으로 하면 오차가 생김...
+                ball.GetComponent<Rigidbody2D>().MovePosition(new Vector3(0, -4f, 0));
+                transform.position = new Vector3(0, Mathf.Lerp(transform.position.y, 0.9f, 0.05f), -10);
+                if (Mathf.Abs(transform.position.y - 0.9f) <= 0.01f)
+                {
+                    ball.GetComponent<Ball>().Ball_Reset();
+                }
+                return;
+            }
+            Vector3 ballPos = miniCam.WorldToViewportPoint(ball.transform.position);
+
+            if (ballPos.y > 0.6f)
+                thresholdFlag = true;
+
+            if ((ballPos.y > 0.6f || ballPos.y < 0.4f) && thresholdFlag)
+            {
+                Vector3 newVec = transform.position;
+                newVec.y = Mathf.Lerp(transform.position.y, ball.transform.position.y, 0.05f);
+                transform.position = newVec;
+            }
+
+        }
     }
     public void My_Turn()
     {
         Ball.isTurn = false;
         isTurn = true;
+        Create_Map.isTurn = false;
     }
 }

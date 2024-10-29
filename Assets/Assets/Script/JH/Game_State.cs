@@ -14,7 +14,9 @@ public class Game_State : MonoBehaviour
     {
         if (Ball.isTurn)
             tMP_Text.text = "State : Ball";
-        else
+        else if (Scroll.isTurn)
             tMP_Text.text = "State : Map";
+        else
+            tMP_Text.text = "State : Create";
     }
 }

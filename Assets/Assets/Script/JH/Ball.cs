@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -12,7 +11,7 @@ public class Ball : MonoBehaviour
     Vector2 mousePos;
     Vector2 direction;          // 공이 날아갈 방향
     public static bool isTurn;
-    bool isShoot;
+    public static bool isShoot;
 
     float rayDistance = 40f;
 
@@ -68,7 +67,7 @@ public class Ball : MonoBehaviour
                 previewBall.SetActive(true);
                 lineRenderer.enabled = true;
             }
-            else if (Input.GetMouseButtonUp(0) && direction.y > 0.1f) // real ball
+            else if (Input.GetMouseButtonUp(0) && direction.y > 0.1f && !isShoot) // real ball
             {
                 rigid.velocity = direction * 10f;
                 isShoot = true;
@@ -87,11 +86,22 @@ public class Ball : MonoBehaviour
         rigid.velocity = Vector3.zero;
         direction = Vector3.zero;
         isShoot = false;
+        Scroll.camSetFlag = false;
+        Scroll.thresholdFlag = false;
+        miniCam.transform.position = new Vector3(0, 0.9f, -10f);
     }
 
     public void My_Turn()
     {
         Scroll.isTurn = false;
         isTurn = true;
+        Create_Map.isTurn = false;
+    }
+
+    public void Clear_Bricks()
+    {
+        foreach (var blcok in Brick.Bricks)
+            if (blcok != null)
+                Destroy(blcok.gameObject);
     }
 }
