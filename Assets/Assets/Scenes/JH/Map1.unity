@@ -1229,7 +1229,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.54
+  orthographic size: 5.5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1363,11 +1363,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 86405350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -262, y: -835}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 203, y: 109}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!61 &58924011
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6442,11 +6442,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 86405350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 280.6589, y: 872.9999}
-  m_SizeDelta: {x: -795.4465, y: -1866.0942}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -45, y: -50.303955}
+  m_SizeDelta: {x: 261.8712, y: 94.1306}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &299464761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6494,8 +6494,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 33
+  m_fontSizeBase: 33
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -17924,11 +17924,11 @@ RectTransform:
   - {fileID: 1086021796}
   m_Father: {fileID: 86405350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 38.042534, y: 872.9999}
-  m_SizeDelta: {x: 121.8661, y: 50.4121}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -327, y: -45.979}
+  m_SizeDelta: {x: 178.5721, y: 98.455}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &923415845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20938,11 +20938,11 @@ RectTransform:
   - {fileID: 158332897}
   m_Father: {fileID: 86405350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -134.71129, y: 872.9999}
-  m_SizeDelta: {x: 121.8661, y: 50.4121}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -107, y: -38.714}
+  m_SizeDelta: {x: 193.1537, y: 104.0453}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1054882991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22536,11 +22536,11 @@ RectTransform:
   - {fileID: 633728427}
   m_Father: {fileID: 86405350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -306.01337, y: 873}
-  m_SizeDelta: {x: 121.8661, y: 50.4121}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 93, y: -47.652954}
+  m_SizeDelta: {x: 201.2545, y: 95.1064}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1124099870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24356,11 +24356,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 86405350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 252, y: -835}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -177, y: 109}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 0}
 --- !u!61 &1240755680
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41109,11 +41109,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 86405350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3, y: -835}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 6, y: 112}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!61 &2092318574
 BoxCollider2D:
   m_ObjectHideFlags: 0
