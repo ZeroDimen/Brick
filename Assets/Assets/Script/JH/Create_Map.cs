@@ -49,6 +49,10 @@ public class Create_Map : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             Vector3 mousePos = miniCam.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 viewportPos = miniCam.ScreenToViewportPoint(mousePos);
+            if (viewportPos.x > 1 || viewportPos.x < 0 || viewportPos.y > 1 || viewportPos.y < 0)
+                return;
+
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
             if (hit.collider != null)
