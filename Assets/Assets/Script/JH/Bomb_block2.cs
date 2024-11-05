@@ -10,7 +10,7 @@ public class Bomb_block2 : Brick
         base.Start();
     }
 
-    public override void Hit()
+    public override void Hit(float dmg = 0)
     {
         base.Hit();
         if (curHp <= 0)

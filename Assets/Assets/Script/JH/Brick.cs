@@ -39,9 +39,13 @@ public class Brick : MonoBehaviour
         transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
     }
 
-    public virtual void Hit()
+    public virtual void Hit(float dmg = 0)
     {
-        curHp -= ball_Dmg;
+        if (dmg == 0)
+            curHp -= ball_Dmg;
+        else
+            curHp -= dmg;
+
         if (curHp <= 0)
             Destroy(gameObject);
         else

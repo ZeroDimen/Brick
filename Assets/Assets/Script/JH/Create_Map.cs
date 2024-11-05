@@ -49,7 +49,7 @@ public class Create_Map : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             Vector3 mousePos = miniCam.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 viewportPos = miniCam.ScreenToViewportPoint(mousePos);
+            Vector3 viewportPos = miniCam.WorldToViewportPoint(mousePos);
             if (viewportPos.x > 1 || viewportPos.x < 0 || viewportPos.y > 1 || viewportPos.y < 0)
                 return;
 

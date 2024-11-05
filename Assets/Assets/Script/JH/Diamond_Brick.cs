@@ -10,7 +10,7 @@ public class Diamond_Brick : Brick
         base.Start();
     }
 
-    public override void Hit()
+    public override void Hit(float dmg = 0)
     {
         curHp -= 1;
         if (curHp <= 0)

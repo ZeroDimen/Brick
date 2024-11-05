@@ -10,7 +10,7 @@ public class Razer_block : Brick
         base.Start();
     }
 
-    public override void Hit()
+    public override void Hit(float dmg = 0)
     {
         base.Hit();
         foreach (var brick in Bricks)
