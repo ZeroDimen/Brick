@@ -7,6 +7,7 @@ public class Diamond_Brick : Brick
     protected override void Start()
     {
         curHp = hp = 4;
+        block_name = "Diamond";
         base.Start();
     }
 
@@ -18,7 +19,7 @@ public class Diamond_Brick : Brick
         else
         {
             tMP_Text.text = $"{curHp}";
-            scrollbar.size = curHp / hp;
+            //scrollbar.size = curHp / hp;
         }
     }
 
