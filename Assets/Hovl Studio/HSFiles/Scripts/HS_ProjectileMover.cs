@@ -17,7 +17,7 @@ public class HS_ProjectileMover : MonoBehaviour
     [SerializeField] protected GameObject[] Detached;
     [SerializeField] protected ParticleSystem projectilePS;
     private bool startChecker = false;
-    [SerializeField]protected bool notDestroy = false;
+    [SerializeField] protected bool notDestroy = false;
 
     protected virtual void Start()
     {
@@ -33,17 +33,17 @@ public class HS_ProjectileMover : MonoBehaviour
                 flash.transform.parent = null;
             }
         }
-        if (notDestroy)
-            StartCoroutine(DisableTimer(5));
-        else
-            Destroy(gameObject, 5);
+        // if (notDestroy)
+        //     StartCoroutine(DisableTimer(5));
+        // else
+        //     Destroy(gameObject, 5);
         startChecker = true;
     }
 
     protected virtual IEnumerator DisableTimer(float time)
     {
         yield return new WaitForSeconds(time);
-        if(gameObject.activeSelf)
+        if (gameObject.activeSelf)
             gameObject.SetActive(false);
         yield break;
     }
@@ -67,13 +67,29 @@ public class HS_ProjectileMover : MonoBehaviour
     {
         if (speed != 0)
         {
-            rb.velocity = transform.forward * speed;      
+            rb.velocity = transform.forward * speed;
         }
     }
 
     //https ://docs.unity3d.com/ScriptReference/Rigidbody.OnCollisionEnter.html
     protected virtual void OnCollisionEnter(Collision collision)
     {
+        GameManager.manager.Wait(2);
+        Collider[] hitColliders = Physics.OverlapSphere(new Vector3(transform.position.x, transform.position.y, 0), 1.1f);
+        foreach (var collider in hitColliders)
+        {
+            if (collider.CompareTag("box"))
+            {
+                foreach (var block in Brick.Bricks)
+                {
+                    if (block != null && block.gameObject == collider.gameObject)
+                    {
+                        block.Hit(40);
+                    }
+                }
+            }
+        }
+
         //Lock all axes movement and rotation
         rb.constraints = RigidbodyConstraints.FreezeAll;
         //speed = 0;

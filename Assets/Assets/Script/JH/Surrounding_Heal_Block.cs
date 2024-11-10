@@ -23,7 +23,7 @@ public class Surrounding_Heal_Block : Brick
 
     void Heal_Surrounding()
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 1.4f);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1.1f);
         foreach (var collider in hitColliders)
         {
             if (collider.CompareTag("box"))
@@ -44,7 +44,7 @@ public class Surrounding_Heal_Block : Brick
         }
         tMP_Text.text = $"{curHp}";
     }
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("ball"))
             Hit();

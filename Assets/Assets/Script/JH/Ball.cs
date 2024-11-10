@@ -5,8 +5,8 @@ public class Ball : MonoBehaviour
 {
     Camera miniCam;
     GameObject previewBall;     // 공의 동선을 보여줄 공
-    Rigidbody2D rigid;
-    RaycastHit2D hit;
+    Rigidbody rigid;
+    RaycastHit hit;
     LayerMask layerMask;        // 공이 부딪힐 레이어 종류
     LineRenderer lineRenderer;  // 공의 동선을 나타낼 선
     Vector2 mousePos;
@@ -21,7 +21,7 @@ public class Ball : MonoBehaviour
         Brick.ball_Dmg = damage;
         miniCam = GameObject.Find("MiniCam").GetComponent<Camera>();
         lineRenderer = GetComponent<LineRenderer>();
-        rigid = GetComponent<Rigidbody2D>();
+        rigid = GetComponent<Rigidbody>();
         previewBall = transform.GetChild(0).gameObject;
 
         layerMask = 1 << LayerMask.NameToLayer("box") | 1 << LayerMask.NameToLayer("wall") | 1 << LayerMask.NameToLayer("bbox");
@@ -40,10 +40,10 @@ public class Ball : MonoBehaviour
                 direction = Vector3.zero;
                 return;
             }
-
-            mousePos = miniCam.ScreenToWorldPoint(mousePos);
+            // perspective 환경에서는 z값이 중요
+            Vector3 screenToWorld = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
+            mousePos = miniCam.ScreenToWorldPoint(screenToWorld);
             direction = (mousePos - (Vector2)transform.position).normalized;
-
             if (direction.y <= 0.1f)
             {
                 previewBall.SetActive(false);
@@ -52,18 +52,19 @@ public class Ball : MonoBehaviour
             }
 
             // 일반적인 직선이 아닌 원을 발사함
-            hit = Physics2D.CircleCast(transform.position, 0.25f, direction, rayDistance, layerMask);
+            if (Physics.SphereCast(transform.position, 0.25f, direction, out hit, rayDistance, layerMask) == false)
+                return;
 
             // CircleCast가 충돌했을때 원의 중심
-            previewBall.transform.position = hit.centroid;
+            previewBall.transform.position = (Vector2)hit.point - direction.normalized * 0.25f;
 
             // 반사각
-            Vector2 reflectDirection = Vector2.Reflect(direction, hit.normal);
+            Vector2 reflectDirection = Vector2.Reflect(direction, (Vector2)hit.normal);
 
             // 두 직선에 필요한 3개의 점
             lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, hit.centroid);
-            lineRenderer.SetPosition(2, hit.centroid + reflectDirection.normalized * 3);
+            lineRenderer.SetPosition(1, (Vector2)hit.point);
+            lineRenderer.SetPosition(2, (Vector2)hit.point + reflectDirection.normalized * 3);
 
             previewBall.SetActive(true);
             lineRenderer.enabled = true;

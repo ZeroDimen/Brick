@@ -42,11 +42,13 @@ public class Deck : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             touchFlag = false;
         }
 
+        // 아무 곳 클릭 했을때 공, 스펠, 덱으로 돌리기
         if (clickFlag && Input.GetMouseButtonDown(0))
         {
             viewportPos = miniCam.ScreenToViewportPoint(Input.mousePosition);
             if (viewportPos.x < 0 || viewportPos.x > 1 || viewportPos.y < 0 || viewportPos.y > 1)
             {
+                // 자기 자신 클릭 안되도록
                 pointer.position = Input.mousePosition;
                 graphic.Raycast(pointer, results);
                 if (results.Count != 0)
@@ -132,7 +134,8 @@ public class Deck : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     {
         if (viewportFlag)   // 미니맵 안
         {
-            if (miniCam.ScreenToWorldPoint(curPos).y >= -3.5f)  // 공의 발사각이 너무 낮아 발사 안되는 경우
+            Vector3 screenToWorld = new Vector3(curPos.x, curPos.y, 10);
+            if (miniCam.ScreenToWorldPoint(screenToWorld).y >= -3.5f)  // 공의 발사각이 너무 낮아 발사 안되는 경우
                 Destroy(gameObject);
             else    // 정상적으로 발사
             {

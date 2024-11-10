@@ -33,4 +33,12 @@ public class GameManager : MonoBehaviour
     {
         _state = state;
     }
+    public void Wait(float time)
+    {
+        Invoke("IsShoot", time);
+    }
+    void IsShoot()
+    {
+        Ball.isShoot = false;
+    }
 }

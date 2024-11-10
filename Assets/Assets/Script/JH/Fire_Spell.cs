@@ -1,10 +1,13 @@
+using System.Collections;
 using UnityEngine;
 
 public class Fire_Spell : MonoBehaviour
 {
+    public GameObject fire;
     Camera miniCam;
     Vector2 mousePos;
     Color color;
+    bool dead;
 
     void Start()
     {
@@ -14,49 +17,38 @@ public class Fire_Spell : MonoBehaviour
 
     void Update()
     {
-        Vector2 viewportPos = miniCam.ScreenToViewportPoint(Input.mousePosition);
-        if (viewportPos.x >= 0 && viewportPos.x <= 1 && viewportPos.y >= 0 && viewportPos.y <= 1)
+        if (!dead)
         {
-            if (Input.GetMouseButton(0))
+            Vector2 viewportPos = miniCam.ScreenToViewportPoint(Input.mousePosition);
+            if (viewportPos.x >= 0 && viewportPos.x <= 1 && viewportPos.y >= 0 && viewportPos.y <= 1)
             {
-                mousePos = miniCam.ScreenToWorldPoint(Input.mousePosition);
-                transform.position = mousePos;
-            }
-            else if (Input.GetMouseButtonUp(0))
-            {
-                Attack();
-                GameManager.manager.player = null;
-                GameManager.manager.count++;
-                if (GameObject.Find("Fire_Spell"))
-                    Destroy(GameObject.Find("Fire_Spell"));
-                Destroy(gameObject);
-            }
-        }
-        else
-        {
-            transform.position = new Vector2(0, -10);
-        }
-    }
-
-    public void Attack()
-    {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, transform.localScale.x / 2);
-        foreach (var collider in hitColliders)
-        {
-            if (collider.CompareTag("box"))
-            {
-                foreach (var block in Brick.Bricks)
+                if (Input.GetMouseButton(0))
                 {
-                    if (block != null && block.gameObject == collider.gameObject)
-                    {
-                        block.Hit(40);
-                    }
+                    Vector3 screenToWorld = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
+                    mousePos = miniCam.ScreenToWorldPoint(screenToWorld);
+                    transform.position = mousePos;
+                }
+                else if (Input.GetMouseButtonUp(0))
+                {
+                    Instantiate(fire, new Vector3(mousePos.x, mousePos.y, -10), Quaternion.identity);
+                    GameManager.manager.player = null;
+                    GameManager.manager.count++;
+                    if (GameObject.Find("Fire_Spell"))
+                        Destroy(GameObject.Find("Fire_Spell"));
+                    transform.position = new Vector2(0, -10);
+                    Ball.isShoot = true;
+                    dead = true;
+                    Destroy(gameObject, 1);
                 }
             }
+            else
+            {
+                transform.position = new Vector2(0, -10);
+            }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("box"))
         {
@@ -65,7 +57,7 @@ public class Fire_Spell : MonoBehaviour
             other.GetComponent<SpriteRenderer>().color = color;
         }
     }
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("box"))
         {
