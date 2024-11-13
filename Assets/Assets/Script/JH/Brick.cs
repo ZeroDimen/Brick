@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Brick : MonoBehaviour
 {
@@ -55,6 +54,16 @@ public class Brick : MonoBehaviour
             tMP_Text.text = $"{curHp}";
             //scrollbar.size = curHp / hp;
         }
+    }
+
+    protected virtual void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.CompareTag("ball") && block_name != "Indestructible")
+        {
+            Hit();
+        }
+        else if (other.collider.CompareTag("Ninja") && block_name != "Indestructible")
+            Hit(1);
     }
 
     public void ChangeDmg(float _Dmg)

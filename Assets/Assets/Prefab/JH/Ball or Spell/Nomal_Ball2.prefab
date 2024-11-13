@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 2691691429990967571}
   - component: {fileID: 4706840195936954912}
   - component: {fileID: 4312706333657051432}
-  - component: {fileID: 4441248123929930987}
-  - component: {fileID: 2685329291945331755}
+  - component: {fileID: -120299825693599409}
+  - component: {fileID: -8372596125497482394}
   m_Layer: 12
-  m_Name: Nomal_Ball3
+  m_Name: Nomal_Ball2
   m_TagString: ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -206,8 +206,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b627e54d27a85594983450ca1f3c1fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
---- !u!54 &4441248123929930987
+  direction: {x: 0, y: 0}
+  damage: 20
+  ball_Name: 
+--- !u!54 &-120299825693599409
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,8 +235,8 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!135 &2685329291945331755
+  m_CollisionDetection: 1
+--- !u!135 &-8372596125497482394
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -253,7 +255,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.2506503
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6901288248417019882
 GameObject:
@@ -327,7 +329,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -23,7 +23,7 @@ public class Diamond_Brick : Brick
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    protected override void OnCollisionEnter(Collision other)
     {
         if (other.collider.CompareTag("ball"))
             Hit();

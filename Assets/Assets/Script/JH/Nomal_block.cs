@@ -10,9 +10,8 @@ public class Nomal_block : Brick
         hp = curHp = 30;
         base.Start();
     }
-    private void OnCollisionEnter(Collision other)
+    protected override void OnCollisionEnter(Collision other)
     {
-        if (other.collider.CompareTag("ball"))
-            Hit();
+        base.OnCollisionEnter(other);
     }
 }

@@ -18,7 +18,7 @@ public class MiniCam : MonoBehaviour
     }
     void Update()
     {
-        if (GameManager.manager.player == null)
+        if (GameManager.manager.player == null && GameManager.manager._state == State.Play)
         {
             Scroll();
         }

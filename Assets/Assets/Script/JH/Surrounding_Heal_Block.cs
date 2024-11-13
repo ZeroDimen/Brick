@@ -32,10 +32,13 @@ public class Surrounding_Heal_Block : Brick
                 {
                     if (block != null && block.gameObject == collider.gameObject)
                     {
+                        if (block == this)
+                            return;
+
                         if (block.block_name == "Diamond" && block.curHp + 1 <= block.hp)
                             block.curHp += 1;
                         else if (block.curHp + 10 <= block.hp)
-                            block.curHp += 10;
+                            block.curHp = block.hp;
 
                         block.tMP_Text.text = $"{block.curHp}";
                     }
@@ -44,9 +47,8 @@ public class Surrounding_Heal_Block : Brick
         }
         tMP_Text.text = $"{curHp}";
     }
-    private void OnCollisionEnter(Collision other)
+    protected override void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("ball"))
-            Hit();
+        base.OnCollisionEnter(other);
     }
 }

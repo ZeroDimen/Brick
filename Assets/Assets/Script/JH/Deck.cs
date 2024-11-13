@@ -30,39 +30,42 @@ public class Deck : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     }
     private void Update()
     {
-        if (Ball.isShoot && obj != null && GameManager.manager.player == obj)
-            Destroy(gameObject);
-
-        if (GameManager.manager.player != obj && img.color.a == 0)
+        if (GameManager.manager._state == State.Play)
         {
-            transform.position = defalutPos;
-            Destroy(obj);
-            img.color = new Color(1, 1, 1, 1);
-            viewportFlag = false;
-            touchFlag = false;
-        }
+            if (Ball.isShoot && obj != null && GameManager.manager.player == obj)
+                Destroy(gameObject);
 
-        // 아무 곳 클릭 했을때 공, 스펠, 덱으로 돌리기
-        if (clickFlag && Input.GetMouseButtonDown(0))
-        {
-            viewportPos = miniCam.ScreenToViewportPoint(Input.mousePosition);
-            if (viewportPos.x < 0 || viewportPos.x > 1 || viewportPos.y < 0 || viewportPos.y > 1)
+            if (GameManager.manager.player != obj && img.color.a == 0)
             {
-                // 자기 자신 클릭 안되도록
-                pointer.position = Input.mousePosition;
-                graphic.Raycast(pointer, results);
-                if (results.Count != 0)
-                {
-                    results.Clear();
-                    return;
-                }
-
                 transform.position = defalutPos;
                 Destroy(obj);
                 img.color = new Color(1, 1, 1, 1);
                 viewportFlag = false;
                 touchFlag = false;
-                GameManager.manager.player = null;
+            }
+
+            // 아무 곳 클릭 했을때 공, 스펠, 덱으로 돌리기
+            if (clickFlag && Input.GetMouseButtonDown(0))
+            {
+                viewportPos = miniCam.ScreenToViewportPoint(Input.mousePosition);
+                if (viewportPos.x < 0 || viewportPos.x > 1 || viewportPos.y < 0 || viewportPos.y > 1)
+                {
+                    // 자기 자신 클릭 안되도록
+                    pointer.position = Input.mousePosition;
+                    graphic.Raycast(pointer, results);
+                    if (results.Count != 0)
+                    {
+                        results.Clear();
+                        return;
+                    }
+
+                    transform.position = defalutPos;
+                    Destroy(obj);
+                    img.color = new Color(1, 1, 1, 1);
+                    viewportFlag = false;
+                    touchFlag = false;
+                    GameManager.manager.player = null;
+                }
             }
         }
     }
