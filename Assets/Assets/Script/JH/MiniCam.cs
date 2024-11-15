@@ -31,7 +31,7 @@ public class MiniCam : MonoBehaviour
 
     void Scroll()
     {
-        if (Input.GetMouseButtonDown(0) && !Ball.isShoot)
+        if (Input.GetMouseButtonDown(0) && GameManager.manager._state == State.Play)
         {
             // 마우스가 뷰포트 내부에 있는지
             mousePos = Input.mousePosition;
@@ -67,7 +67,7 @@ public class MiniCam : MonoBehaviour
 
     void Follow_Ball()
     {
-        if (Ball.isShoot && GameManager.manager.player != null)
+        if (GameManager.manager._state == State.Shoot && GameManager.manager.player != null)
         {
             Vector3 ballPos = miniCam.WorldToViewportPoint(GameManager.manager.player.transform.position);
 
@@ -91,7 +91,7 @@ public class MiniCam : MonoBehaviour
             {
                 posReset = false;
                 thresholdFlag = false;
-                Ball.isShoot = false;
+                GameManager.manager.Change_State(State.Play);
             }
         }
     }

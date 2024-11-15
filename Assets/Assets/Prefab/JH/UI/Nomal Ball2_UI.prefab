@@ -89,3 +89,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 4562051781919055751, guid: f9d50c567d141ba46adf3ede2507dab0, type: 3}
+  n: 1

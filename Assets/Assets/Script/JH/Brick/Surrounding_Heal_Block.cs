@@ -15,8 +15,8 @@ public class Surrounding_Heal_Block : Brick
     {
         while (true)
         {
-            yield return new WaitUntil(() => Ball.isShoot);
-            yield return new WaitUntil(() => !Ball.isShoot);
+            yield return new WaitUntil(() => GameManager.manager._state == State.Shoot);
+            yield return new WaitUntil(() => GameManager.manager._state == State.Play);
             Heal_Surrounding();
         }
     }

@@ -31,12 +31,8 @@ public class Fire_Spell : MonoBehaviour
                 else if (Input.GetMouseButtonUp(0))
                 {
                     Instantiate(fire, new Vector3(mousePos.x, mousePos.y, -10), Quaternion.identity);
-                    GameManager.manager.player = null;
-                    GameManager.manager.count++;
-                    if (GameObject.Find("Fire_Spell"))
-                        Destroy(GameObject.Find("Fire_Spell"));
                     transform.position = new Vector2(0, -10);
-                    Ball.isShoot = true;
+                    GameManager.manager.Change_State(State.Shoot);
                     dead = true;
                     Destroy(gameObject, 1);
                 }

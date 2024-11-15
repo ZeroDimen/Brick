@@ -75,11 +75,13 @@ public class HS_ProjectileMover : MonoBehaviour
     //https ://docs.unity3d.com/ScriptReference/Rigidbody.OnCollisionEnter.html
     protected virtual void OnCollisionEnter(Collision collision)
     {
+        // 두번씩 충돌되는거 방지
         if (flag)
             return;
         flag = true;
         GameManager.manager.Fire_Ball_Collision_Flag();
-        GameManager.manager.Wait(2);    // 2초 후에 isShoot를 false로 만드는 함수
+        GameManager.manager.Change_State(State.Standby);
+        GameManager.manager.Wait(2);    // 2초 후에 Stanby상태를 Play로 만드는 함수
         Collider[] hitColliders = Physics.OverlapSphere(new Vector3(transform.position.x, transform.position.y, 0), 1.1f);
         foreach (var collider in hitColliders)
         {

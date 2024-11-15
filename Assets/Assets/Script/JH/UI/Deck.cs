@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using System.Collections;
 
 public class Deck : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler
 {
@@ -15,6 +16,7 @@ public class Deck : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     Vector2 curPos;
     Vector3 viewportPos;
     Image img;
+    public int n;
     bool viewportFlag;
     bool touchFlag;
     bool clickFlag;
@@ -24,17 +26,30 @@ public class Deck : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         graphic = GameObject.Find("UI").GetComponent<GraphicRaycaster>();
         pointer = new PointerEventData(null);
         results = new List<RaycastResult>();
+
         miniCam = GameObject.Find("MiniCam").GetComponent<Camera>();
         defalutPos = transform.position;
         img = transform.GetComponent<Image>();
     }
     private void Update()
     {
-        if (GameManager.manager._state == State.Play)
-        {
-            if (Ball.isShoot && obj != null && GameManager.manager.player == obj)
-                Destroy(gameObject);
+        Click();
+    }
 
+    // 클릭으로 카드 선택 후 행동
+    void Click()
+    {
+        if (GameManager.manager._state == State.Play || GameManager.manager._state == State.Shoot)
+        {
+            // 클릭 or 드래그 공을 발사 했을때 해당 카드 제거
+            if (GameManager.manager._state == State.Shoot && obj != null && GameManager.manager.player == obj)
+            {
+                UI_Manager.manager.UsedCard = transform.parent.GetComponent<Card>().n;
+                GameManager.manager.UsedDeck = n;
+                Destroy(gameObject);
+            }
+
+            // 해당 카드를 클릭 후 다른 카드를 클릭 했을때 카드 되돌리기
             if (GameManager.manager.player != obj && img.color.a == 0)
             {
                 transform.position = defalutPos;
@@ -44,7 +59,7 @@ public class Deck : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
                 touchFlag = false;
             }
 
-            // 아무 곳 클릭 했을때 공, 스펠, 덱으로 돌리기
+            // 카드 선택 후 아무 곳 클릭 했을때 공, 스펠, 덱으로 돌리기
             if (clickFlag && Input.GetMouseButtonDown(0))
             {
                 viewportPos = miniCam.ScreenToViewportPoint(Input.mousePosition);
@@ -69,9 +84,11 @@ public class Deck : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
             }
         }
     }
+
+    // 클릭으로 카드 선택
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!Ball.isShoot && GameManager.manager._state == State.Play && !touchFlag)
+        if (GameManager.manager._state == State.Play && !touchFlag)
         {
             if (GameManager.manager.player != null)
                 Destroy(GameManager.manager.player);
@@ -84,14 +101,14 @@ public class Deck : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         }
     }
 
-    // 드래그 시작
+    // 드래그로 카드 선택시 드래그 시작부분
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (!Ball.isShoot && GameManager.manager._state == State.Play)
+        if (GameManager.manager._state == State.Play)
             touchFlag = true;
     }
 
-    // 드래그 중
+    // 드래그로 카드 선택시 드래그중
     public void OnDrag(PointerEventData eventData)
     {
         if (touchFlag)
@@ -132,15 +149,19 @@ public class Deck : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         }
     }
 
-    // 드래그 끝
+    // 드래그로 카드 선택시 드래그 끝날때
     public void OnEndDrag(PointerEventData eventData)
     {
         if (viewportFlag)   // 미니맵 안
         {
             Vector3 screenToWorld = new Vector3(curPos.x, curPos.y, 10);
-            if (miniCam.ScreenToWorldPoint(screenToWorld).y >= -3.5f)  // 공의 발사각이 너무 낮아 발사 안되는 경우
+            if (miniCam.ScreenToWorldPoint(screenToWorld).y >= -3.5f) // 정상적으로 발사
+            {
+                UI_Manager.manager.UsedCard = transform.parent.GetComponent<Card>().n;
+                GameManager.manager.UsedDeck = n;
                 Destroy(gameObject);
-            else    // 정상적으로 발사
+            }
+            else // 공의 발사각이 너무 낮아 발사 안되는 경우
             {
                 transform.position = defalutPos;
                 img.color = new Color(1, 1, 1, 1);

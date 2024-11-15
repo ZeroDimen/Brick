@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -18,7 +17,6 @@ public class Ball : MonoBehaviour
     Vector2 reflect;
 
     public float damage;
-    public static bool isShoot;
     float rayDistance = 40f;
     public string ball_Name;
 
@@ -35,9 +33,9 @@ public class Ball : MonoBehaviour
     }
     protected virtual void Update()
     {
-        if (GameManager.manager._state == State.Play)
+        if (GameManager.manager._state == State.Play || GameManager.manager._state == State.Shoot)
         {
-            if (Input.GetMouseButton(0) && !isShoot)    // preview ball
+            if (Input.GetMouseButton(0) && GameManager.manager._state == State.Play)    // preview ball
             {
                 // 마우스가 뷰포트 안인지 체크
                 mousePos = Input.mousePosition;
@@ -79,12 +77,11 @@ public class Ball : MonoBehaviour
                 previewBall.SetActive(true);
                 lineRenderer.enabled = true;
             }
-            else if (Input.GetMouseButtonUp(0) && direction.y > 0.1f && !isShoot) // real ball
+            else if (Input.GetMouseButtonUp(0) && direction.y > 0.1f && GameManager.manager._state == State.Play) // real ball
             {
                 rigid.velocity = direction * 10f;
-                isShoot = true;
                 miniCam.transform.position = new Vector3(0, 0.9f, -10);
-                GameManager.manager.count++;
+                GameManager.manager.Change_State(State.Shoot);
                 if (ball_Name == "Ninja")
                 {
                     Ninja_Ball.die_count = 0;
@@ -100,11 +97,11 @@ public class Ball : MonoBehaviour
             if (transform.position.y < -4f)
             {
                 MiniCam.posReset = true;
-                GameManager.manager.player = null;
                 if (ball_Name == "Ninja")
                     Ninja_Ball.die_count++;
                 if (Ninja_Ball.die_count == 5)
                     Ninja_Ball.count = 0;
+                GameManager.manager.Change_State(State.Standby);
                 Destroy(gameObject);
             }
         }
