@@ -16,9 +16,7 @@ public class Surrounding_Heal_Block : Brick
         while (true)
         {
             yield return new WaitUntil(() => GameManager.manager._state == State.Shoot);
-            Debug.Log("Shoot");
             yield return new WaitUntil(() => GameManager.manager._state == State.Play);
-            Debug.Log("Play");
 
             Heal_Surrounding();
         }
@@ -26,7 +24,6 @@ public class Surrounding_Heal_Block : Brick
 
     void Heal_Surrounding()
     {
-        Debug.Log(1);
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1.1f);
         foreach (var collider in hitColliders)
         {
@@ -54,7 +51,6 @@ public class Surrounding_Heal_Block : Brick
                 }
             }
         }
-        Debug.Log("working");
         tMP_Text.text = $"{curHp}";
     }
     protected override void OnCollisionEnter(Collision other)

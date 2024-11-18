@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_Manager : MonoBehaviour
 {
@@ -10,7 +12,11 @@ public class UI_Manager : MonoBehaviour
     public GameObject[] Map;
     public GameObject Menu_Button;
     public GameObject Map_Button;
+    public Slider GaugeBar;
+    public TMP_Text tMP_Text;
     public static UI_Manager manager;
+    float gauge = 100;
+    float _gauge;
     public int UsedCard;
     private void Awake()
     {
@@ -29,6 +35,8 @@ public class UI_Manager : MonoBehaviour
         {
             Deck_Queue.Enqueue(Deck_Array[i]);
         }
+
+        _gauge = gauge;
     }
     private void Start()
     {
@@ -37,7 +45,32 @@ public class UI_Manager : MonoBehaviour
             GameObject obj = Instantiate(Deck[Deck_Queue.Dequeue()], card.transform.position, Quaternion.identity);
             obj.transform.SetParent(card.transform);
         }
+        tMP_Text.text = $"{gauge}";
     }
+
+    public bool Gauge_Check(int n)
+    {
+        if (_gauge - n < 0)
+            return false;
+        else
+            return true;
+    }
+
+    public void Gauge(int n)
+    {
+        _gauge -= n;
+
+        GaugeBar.value = _gauge / gauge;
+        tMP_Text.text = $"{_gauge}";
+    }
+
+    public void Gauge_Reset()
+    {
+        _gauge = gauge;
+        GaugeBar.value = 1;
+        tMP_Text.text = $"{gauge}";
+    }
+
     private T[] ShuffleArray<T>(T[] array) //배열 섞어주는 함수
     {
         int random1, random2;

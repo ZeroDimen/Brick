@@ -38,6 +38,9 @@ public class Ninja_Ball : Ball
                 obj.GetComponent<Rigidbody>().velocity = Quaternion.Euler(0, 0, -angle) * rigid.velocity;
                 obj.GetComponent<Ninja_Ball>().direction = obj.GetComponent<Rigidbody>().velocity.normalized;
                 obj.GetComponent<Ninja_Ball>().collision = other.gameObject;
+                // 닌자 카메라 대장 죽으면 다 죽는 버전
+                //obj.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+                //
 
                 rigid.velocity = Quaternion.Euler(0, 0, angle) * rigid.velocity;
                 direction = rigid.velocity.normalized;

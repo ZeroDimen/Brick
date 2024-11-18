@@ -26,13 +26,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (Time.timeScale == 0.2f)
-                Time.timeScale = 1f;
-            else
-                Time.timeScale = 0.2f;
-        }
+
     }
 
     void Game_State()
@@ -72,7 +66,9 @@ public class GameManager : MonoBehaviour
                 Destroy(ball.gameObject);
         }
         Change_State(State.Standby);
+        Ninja_Ball.die_count = 0;
         Ball.balls.Clear();
+        Ninja_Ball.Ninja.Clear();
         MiniCam.posReset = true;
         player = null;
     }

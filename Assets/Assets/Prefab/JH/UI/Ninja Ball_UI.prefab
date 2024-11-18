@@ -90,3 +90,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   card: {fileID: 2289260171798005578, guid: 0f7f96dabe2931a47b54a18e7bfdb82e, type: 3}
   n: 3
+  cost: 30

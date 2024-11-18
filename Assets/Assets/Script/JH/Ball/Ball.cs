@@ -115,10 +115,25 @@ public class Ball : MonoBehaviour
                     if (Ninja_Ball.die_count == Ninja_Ball.Ninja.Count)
                     {
                         Ninja_Ball.Ninja.Clear();
+                        Ninja_Ball.die_count = 0;
                         MiniCam.posReset = true;
                         GameManager.manager.Change_State(State.Standby);
                     }
                     Destroy(gameObject);
+
+                    // 닌자 카메라 대장 죽으면 다 죽는 버전
+                    // if (GameManager.manager.player == gameObject)
+                    // {
+                    //     foreach (var ball in Ninja_Ball.Ninja)
+                    //         if (ball != null && ball != gameObject)
+                    //             Destroy(ball);
+                    //     MiniCam.posReset = true;
+                    //     GameManager.manager.Change_State(State.Standby);
+                    //     Destroy(gameObject);
+                    // }
+                    // else
+                    //     Destroy(gameObject);
+                    //
                 }
                 else
                 {
