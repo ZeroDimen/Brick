@@ -1,14 +1,16 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Ninja_Ball : Ball
 {
-    static public int count;
     static public int die_count;
     public GameObject collision;
+    static public List<GameObject> Ninja = new List<GameObject>();
     protected override void Start()
     {
         base.Start();
+        Ninja.Add(this.gameObject);
         StartCoroutine(Collision_Destroy());
     }
 
@@ -28,7 +30,7 @@ public class Ninja_Ball : Ball
         if (collision != other.gameObject)
         {
             base.OnCollisionEnter(other);
-            if (count < 5 && other.gameObject.CompareTag("box"))
+            if (Ninja.Count < 5 && other.gameObject.CompareTag("box"))
             {
                 float angle = Mathf.Min(Vector2.Angle(direction, normal), 90 - Vector2.Angle(direction, normal)) / 2;
 
@@ -39,11 +41,7 @@ public class Ninja_Ball : Ball
 
                 rigid.velocity = Quaternion.Euler(0, 0, angle) * rigid.velocity;
                 direction = rigid.velocity.normalized;
-
-                count++;
             }
         }
-
-
     }
 }

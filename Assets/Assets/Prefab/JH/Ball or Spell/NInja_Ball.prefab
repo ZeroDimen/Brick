@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1538550157785557775}
   - component: {fileID: 5350432189731276506}
   m_Layer: 12
-  m_Name: test_ball
+  m_Name: NInja_Ball
   m_TagString: Ninja
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,6 +209,8 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   damage: 10
   ball_Name: Ninja
+  _count: 0
+  ball: {fileID: 2289260171798005578}
   collision: {fileID: 0}
 --- !u!54 &1538550157785557775
 Rigidbody:

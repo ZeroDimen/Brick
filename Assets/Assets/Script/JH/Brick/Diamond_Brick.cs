@@ -25,7 +25,7 @@ public class Diamond_Brick : Brick
 
     protected override void OnCollisionEnter(Collision other)
     {
-        if (other.collider.CompareTag("ball"))
+        if (other.collider.CompareTag("ball") || other.collider.CompareTag("Ninja"))
             Hit();
     }
 }

@@ -38,10 +38,6 @@ public class UI_Manager : MonoBehaviour
             obj.transform.SetParent(card.transform);
         }
     }
-    void UsedCard_Chack()
-    {
-
-    }
     private T[] ShuffleArray<T>(T[] array) //배열 섞어주는 함수
     {
         int random1, random2;

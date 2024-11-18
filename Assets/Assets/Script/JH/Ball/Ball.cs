@@ -85,7 +85,6 @@ public class Ball : MonoBehaviour
                 if (ball_Name == "Ninja")
                 {
                     Ninja_Ball.die_count = 0;
-                    Ninja_Ball.count = 0;
                 }
             }
             else
@@ -96,16 +95,39 @@ public class Ball : MonoBehaviour
 
             if (transform.position.y < -4f)
             {
-                MiniCam.posReset = true;
                 if (ball_Name == "Ninja")
+                {
                     Ninja_Ball.die_count++;
-                if (Ninja_Ball.die_count == 5)
-                    Ninja_Ball.count = 0;
-                GameManager.manager.Change_State(State.Standby);
-                Destroy(gameObject);
+
+                    if (GameManager.manager.player == gameObject)
+                    {
+                        for (int i = 1; i < Ninja_Ball.Ninja.Count; i++)
+                        {
+                            if (Ninja_Ball.Ninja[i] != null && Ninja_Ball.Ninja[i] != gameObject)
+                            {
+                                miniCam.transform.position = new Vector3(0, Ninja_Ball.Ninja[i].transform.position.y, -10);
+                                GameManager.manager.player = Ninja_Ball.Ninja[i];
+                                break;
+                            }
+                        }
+                    }
+
+                    if (Ninja_Ball.die_count == Ninja_Ball.Ninja.Count)
+                    {
+                        Ninja_Ball.Ninja.Clear();
+                        MiniCam.posReset = true;
+                        GameManager.manager.Change_State(State.Standby);
+                    }
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    MiniCam.posReset = true;
+                    GameManager.manager.Change_State(State.Standby);
+                    Destroy(gameObject);
+                }
             }
         }
-
     }
     protected virtual void OnCollisionEnter(Collision other)
     {

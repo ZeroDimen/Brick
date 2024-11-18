@@ -67,14 +67,17 @@ public class MiniCam : MonoBehaviour
 
     void Follow_Ball()
     {
-        if (GameManager.manager._state == State.Shoot && GameManager.manager.player != null)
+        if (GameManager.manager._state == State.Shoot)
         {
+            if (GameManager.manager.player == null)
+                return;
+
             Vector3 ballPos = miniCam.WorldToViewportPoint(GameManager.manager.player.transform.position);
 
             if (ballPos.y > 0.6f)
                 thresholdFlag = true;
 
-            if ((ballPos.y > 0.6f || ballPos.y < 0.4f) && thresholdFlag)
+            if ((ballPos.y > 0.6f || ballPos.y < 0.4f) && thresholdFlag && transform.position.y >= 0.9f)
             {
                 Vector3 newVec = transform.position;
                 newVec.y = Mathf.Lerp(transform.position.y, GameManager.manager.player.transform.position.y, 0.05f);
@@ -86,7 +89,7 @@ public class MiniCam : MonoBehaviour
     {
         if (posReset)
         {
-            transform.position = new Vector3(0, Mathf.Lerp(transform.position.y, 0.9f, 0.05f), -10);
+            transform.position = new Vector3(0, Mathf.Lerp(transform.position.y, 0.9f, 0.2f), -10);
             if (Mathf.Abs(transform.position.y - 0.9f) <= 0.01f)
             {
                 posReset = false;
