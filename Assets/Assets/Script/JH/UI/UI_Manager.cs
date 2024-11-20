@@ -9,9 +9,16 @@ public class UI_Manager : MonoBehaviour
     public GameObject[] Card;
     public GameObject[] Deck;
     public GameObject Menu_Panel;
-    public GameObject[] Map;
-    public GameObject Menu_Button;
-    public GameObject Map_Button;
+    public GameObject Map;
+    public GameObject Menu;
+    public GameObject Select_Map;
+    public GameObject Map_1;
+    public GameObject[] Maps_1;
+    public GameObject Map_2;
+    public GameObject[] Maps_2;
+    public GameObject Map_3;
+    public GameObject[] Maps_3;
+    public GameObject Default_Map;
     public Slider GaugeBar;
     public TMP_Text tMP_Text;
     public static UI_Manager manager;
@@ -116,67 +123,64 @@ public class UI_Manager : MonoBehaviour
         GameManager.manager.Change_State(State.Play);
     }
 
-    public void Menu_Map_Change_Button()
+    public void Menu_Map()
     {
-        if (Menu_Button.activeSelf == true)
-        {
-            Menu_Button.SetActive(false);
-            Map_Button.SetActive(true);
-        }
-        else
-        {
-            Map_Button.SetActive(false);
-            Menu_Button.SetActive(true);
-        }
+        Map.SetActive(true);
+        Menu.SetActive(false);
     }
 
-    public void Map_Change(int n)
+    public void Select_Map_Stage_1()
     {
-        foreach (var map in Map)
+        Map_1.SetActive(true);
+        Select_Map.SetActive(false);
+    }
+    public void Select_Map_Stage_2()
+    {
+        Map_2.SetActive(true);
+        Select_Map.SetActive(false);
+    }
+    public void Select_Map_Stage_3()
+    {
+        Map_3.SetActive(true);
+        Select_Map.SetActive(false);
+    }
+    public void Select_Map_Back()
+    {
+        Menu.SetActive(true);
+        Map.SetActive(false);
+    }
+    public void Map_Back()
+    {
+        Select_Map.SetActive(true);
+        Map_1.SetActive(false);
+        Map_2.SetActive(false);
+        Map_3.SetActive(false);
+    }
+    public void Map_Change(int stage, int n)
+    {
+        Default_Map.SetActive(false);
+        foreach (var map in Maps_1)
         {
             map.SetActive(false);
         }
-
-        switch (n)
+        foreach (var map in Maps_2)
         {
-            case 0:
-                Map[0].SetActive(true);
-                break;
+            map.SetActive(false);
+        }
+        foreach (var map in Maps_3)
+        {
+            map.SetActive(false);
+        }
+        switch (stage)
+        {
             case 1:
-                Map[1].SetActive(true);
+                Maps_1[n].SetActive(true);
                 break;
             case 2:
-                Map[2].SetActive(true);
+                Maps_2[n].SetActive(true);
                 break;
             case 3:
-                Map[3].SetActive(true);
-                break;
-            case 4:
-                Map[4].SetActive(true);
-                break;
-            case 5:
-                Map[5].SetActive(true);
-                break;
-            case 6:
-                Map[6].SetActive(true);
-                break;
-            case 7:
-                Map[7].SetActive(true);
-                break;
-            case 8:
-                Map[8].SetActive(true);
-                break;
-            case 9:
-                Map[9].SetActive(true);
-                break;
-            case 10:
-                Map[10].SetActive(true);
-                break;
-            case 11:
-                Map[11].SetActive(true);
-                break;
-            case 12:
-                Map[12].SetActive(true);
+                Maps_3[n].SetActive(true);
                 break;
         }
         return;

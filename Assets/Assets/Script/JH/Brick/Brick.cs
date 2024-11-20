@@ -34,7 +34,7 @@ public class Brick : MonoBehaviour
         tMP_Text.rectTransform.position = transform.position;
         //scrollbar.transform.position = Camera.main.WorldToScreenPoint(transform.position - Vector3.up * 0.45f);
 
-        tMP_Text.text = $"{hp}";
+        tMP_Text.text = $"{curHp}";
 
         transform.GetChild(0).gameObject.SetActive(true);
         //transform.GetChild(1).GetChild(0).gameObject.SetActive(true);

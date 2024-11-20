@@ -1,15 +1,16 @@
 using UnityEngine;
 
-public class Nomal_block : Brick
+public class Impact_Nullity_Block : Brick
 {
     protected override void Start()
     {
-        block_name = "Nomal";
+        block_name = "Impact_Nullity";
         hp = curHp = 30;
         base.Start();
     }
+
     protected override void OnCollisionEnter(Collision other)
     {
-        base.OnCollisionEnter(other);
+
     }
 }
