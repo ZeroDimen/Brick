@@ -19,31 +19,22 @@ public class GameManager : MonoBehaviour
         if (manager == null) manager = this;
         else Destroy(gameObject);
     }
-    void Start()
-    {
 
-    }
-
-    void Update()
-    {
-        //Time.timeScale = 0.1f;
-    }
-
-    void Game_State()
-    {
-
-    }
     public void Game_ReStart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void Change_State(State state)
     {
+        if (_state == state)
+            return;
+
         if (_state == State.Shoot && state == State.Standby)
             player = null;
         if (_state == State.Standby && state == State.Play)
             UI_Manager.manager.DrawCard(UsedDeck);
-        if (_state == State.Menu)
+
+        if (state == State.Menu)
             Time.timeScale = 0;
         else
             Time.timeScale = 1;

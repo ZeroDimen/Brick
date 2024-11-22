@@ -159,18 +159,17 @@ public class UI_Manager : MonoBehaviour
     public void Map_Change(int stage, int n)
     {
         Default_Map.SetActive(false);
+        Gauge_Reset();
+        GameManager.manager.Ball_Reset();
         foreach (var map in Maps_1)
-        {
             map.SetActive(false);
-        }
+
         foreach (var map in Maps_2)
-        {
             map.SetActive(false);
-        }
+
         foreach (var map in Maps_3)
-        {
             map.SetActive(false);
-        }
+
         switch (stage)
         {
             case 1:
