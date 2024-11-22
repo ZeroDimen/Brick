@@ -4,11 +4,22 @@ using UnityEngine;
 
 public class Twice_Heal_Block : Brick
 {
+    //
+    public float test_hp;
+    public float test_hp_max;
+    //
     protected override void Start()
     {
         block_name = "Twice_Heal";
         hp = 50;
         curHp = 5;
+        //
+        if (test_hp != 0 && test_hp_max != 0)
+        {
+            hp = test_hp_max;
+            curHp = test_hp;
+        }
+        //
         base.Start();
         StartCoroutine(Heal());
     }

@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class Diamond_Brick : Brick
 {
+    //
+    public float test_hp;
+    //
     protected override void Start()
     {
         curHp = hp = 4;
+        //
+        if (test_hp != 0)
+            curHp = hp = test_hp;
+        //
         block_name = "Diamond";
         base.Start();
+
     }
 
     public override void Hit(float dmg = 0)

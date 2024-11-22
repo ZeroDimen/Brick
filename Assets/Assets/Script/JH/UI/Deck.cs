@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class Deck : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler
 {
+    public static List<GameObject> Deck_List = new List<GameObject>();
     GraphicRaycaster graphic;
     PointerEventData pointer;
     List<RaycastResult> results;
@@ -25,6 +26,7 @@ public class Deck : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     private void Start()
     {
+        Deck_List.Add(gameObject);
         graphic = GameObject.Find("UI").GetComponent<GraphicRaycaster>();
         pointer = new PointerEventData(null);
         results = new List<RaycastResult>();

@@ -7,7 +7,7 @@ public class UI_Manager : MonoBehaviour
 {
     private Queue<int> Deck_Queue = new Queue<int>(); //선입선출 방식의 덱을 구현하기위한 큐
     public GameObject[] Card;
-    public GameObject[] Deck;
+    public GameObject[] Decks;
     public GameObject Menu_Panel;
     public GameObject Map;
     public GameObject Menu;
@@ -16,6 +16,8 @@ public class UI_Manager : MonoBehaviour
     public GameObject[] Maps_1;
     public GameObject Map_2;
     public GameObject[] Maps_2;
+    public GameObject Map_2_ver2;
+    public GameObject[] Maps_2_ver2;
     public GameObject Map_3;
     public GameObject[] Maps_3;
     public GameObject Default_Map;
@@ -30,18 +32,7 @@ public class UI_Manager : MonoBehaviour
         if (manager == null) manager = this;
         else Destroy(gameObject);
 
-        int[] Deck_Array = new int[5];
-        for (int i = 0; i < 5; i++)
-        {
-            Deck_Array[i] = i;
-        }
-
-        Deck_Array = ShuffleArray(Deck_Array);
-
-        for (int i = 0; i < 5; i++) // 큐에 셔플된 배열 값 저장
-        {
-            Deck_Queue.Enqueue(Deck_Array[i]);
-        }
+        Add_Queue();
 
         _gauge = gauge;
     }
@@ -49,7 +40,7 @@ public class UI_Manager : MonoBehaviour
     {
         foreach (var card in Card)
         {
-            GameObject obj = Instantiate(Deck[Deck_Queue.Dequeue()], card.transform.position, Quaternion.identity);
+            GameObject obj = Instantiate(Decks[Deck_Queue.Dequeue()], card.transform.position, Quaternion.identity);
             obj.transform.SetParent(card.transform);
         }
         tMP_Text.text = $"{gauge}";
@@ -78,6 +69,21 @@ public class UI_Manager : MonoBehaviour
         tMP_Text.text = $"{gauge}";
     }
 
+    void Add_Queue()
+    {
+        int[] Deck_Array = new int[5];
+        for (int i = 0; i < 5; i++)
+        {
+            Deck_Array[i] = i;
+        }
+
+        Deck_Array = ShuffleArray(Deck_Array);
+
+        for (int i = 0; i < 5; i++) // 큐에 셔플된 배열 값 저장
+        {
+            Deck_Queue.Enqueue(Deck_Array[i]);
+        }
+    }
     private T[] ShuffleArray<T>(T[] array) //배열 섞어주는 함수
     {
         int random1, random2;
@@ -108,7 +114,7 @@ public class UI_Manager : MonoBehaviour
         Card[4].transform.GetChild(0).transform.position = Card[UsedCard].transform.position;
         Card[4].transform.GetChild(0).SetParent(Card[UsedCard].transform);
 
-        GameObject obj = Instantiate(Deck[Deck_Queue.Dequeue()], Card[4].transform.position, Quaternion.identity);
+        GameObject obj = Instantiate(Decks[Deck_Queue.Dequeue()], Card[4].transform.position, Quaternion.identity);
         obj.transform.SetParent(Card[4].transform);
     }
     public void Menu_Open()
@@ -139,6 +145,11 @@ public class UI_Manager : MonoBehaviour
         Map_2.SetActive(true);
         Select_Map.SetActive(false);
     }
+    public void Select_Map_Stage_2_ver2()
+    {
+        Map_2_ver2.SetActive(true);
+        Select_Map.SetActive(false);
+    }
     public void Select_Map_Stage_3()
     {
         Map_3.SetActive(true);
@@ -154,17 +165,32 @@ public class UI_Manager : MonoBehaviour
         Select_Map.SetActive(true);
         Map_1.SetActive(false);
         Map_2.SetActive(false);
+        Map_2_ver2.SetActive(false);
         Map_3.SetActive(false);
     }
     public void Map_Change(int stage, int n)
     {
         Default_Map.SetActive(false);
         Gauge_Reset();
-        GameManager.manager.Ball_Reset();
+        GameManager.manager.Ball_Reset(State.Play);
+        foreach (var d in Deck.Deck_List)
+            Destroy(d);
+        Deck.Deck_List.Clear();
+        Deck_Queue.Clear();
+        Add_Queue();
+        foreach (var card in Card)
+        {
+            GameObject obj = Instantiate(Decks[Deck_Queue.Dequeue()], card.transform.position, Quaternion.identity);
+            obj.transform.SetParent(card.transform);
+        }
+
         foreach (var map in Maps_1)
             map.SetActive(false);
 
         foreach (var map in Maps_2)
+            map.SetActive(false);
+
+        foreach (var map in Maps_2_ver2)
             map.SetActive(false);
 
         foreach (var map in Maps_3)
@@ -180,6 +206,9 @@ public class UI_Manager : MonoBehaviour
                 break;
             case 3:
                 Maps_3[n].SetActive(true);
+                break;
+            case 4:
+                Maps_2_ver2[n].SetActive(true);
                 break;
         }
         return;

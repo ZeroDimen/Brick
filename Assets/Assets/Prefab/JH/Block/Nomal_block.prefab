@@ -103,6 +103,7 @@ MonoBehaviour:
   hp: 0
   curHp: 0
   block_name: 
+  test_hp: 0
 --- !u!65 &-7447682818372940967
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -135,6 +136,14 @@ PrefabInstance:
     - target: {fileID: 3168386624538154069, guid: c4bf68cd3e04e444e854a232e9894faa, type: 3}
       propertyPath: m_text
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168386624538154069, guid: c4bf68cd3e04e444e854a232e9894faa, type: 3}
+      propertyPath: m_fontSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168386624538154069, guid: c4bf68cd3e04e444e854a232e9894faa, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3168386624538154069, guid: c4bf68cd3e04e444e854a232e9894faa, type: 3}
       propertyPath: m_VerticalAlignment

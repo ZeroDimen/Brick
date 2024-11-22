@@ -63,6 +63,20 @@ public class GameManager : MonoBehaviour
         MiniCam.posReset = true;
         player = null;
     }
+    public void Ball_Reset(State state = State.Play)
+    {
+        foreach (var ball in Ball.balls)
+        {
+            if (ball != null)
+                Destroy(ball.gameObject);
+        }
+        Change_State(State.Play);
+        Ninja_Ball.die_count = 0;
+        Ball.balls.Clear();
+        Ninja_Ball.Ninja.Clear();
+        MiniCam.posReset = true;
+        player = null;
+    }
     public void Fire_Ball_Collision_Flag()
     {
         StartCoroutine(Fire_Ball_Collision_Flag_());

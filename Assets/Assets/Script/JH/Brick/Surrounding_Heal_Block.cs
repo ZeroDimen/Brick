@@ -3,10 +3,17 @@ using UnityEngine;
 
 public class Surrounding_Heal_Block : Brick
 {
+    //
+    public float test_hp;
+    //
     protected override void Start()
     {
         block_name = "Surrounding";
         curHp = hp = 30;
+        //
+        if (test_hp != 0)
+            curHp = hp = test_hp;
+        //
         base.Start();
         StartCoroutine(Heal());
     }
