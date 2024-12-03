@@ -18,24 +18,26 @@ public class Player_Data : MonoBehaviour
     }
 
     [Serializable]
-    public class BallData // 공의 데이터
+    public class CardData // 공의 데이터
     {
-        public string BallName; // 공의 이름
-        public int BallLevel; // 공의 레벨
-        public float BallDamage; // 공의 공격력
+        public ushort CardNumber; // 카드의 고유 번호
+        public string CardName; // 카드의 이름
+        public int CardLevel; // 카드의 레벨
+        public float CardDamage; // 카드의 공격력
+        public bool CardIsHave;
 
     }
 
     [Serializable]
-    public class BallDataList // 여러 공의 데이터를 관리하기 위한 리스트
+    public class CardDataList // 여러 공의 데이터를 관리하기 위한 리스트
     {
-        public List<BallData> Balls = new List<BallData>();
+        public List<CardData> Cards = new List<CardData>();
     }
 
     [Serializable]
     public class GameData // 게임에 사용되는 데이터
     {
         public PlayerData playerData;
-        public BallDataList ballDataList;
+        public CardDataList cardDataList;
     }
 }
