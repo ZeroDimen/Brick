@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -61,6 +62,19 @@ public class UI_Manager : MonoBehaviour
         GaugeBar.value = _gauge / gauge;
         tMP_Text.text = $"{_gauge}";
     }
+    public void Clock_Ball_Gauge(int n)
+    {
+        StartCoroutine(clock_Ball_Gauge(n));
+    }
+    public IEnumerator clock_Ball_Gauge(int n)
+    {
+        yield return new WaitUntil(() => GameManager.manager._state == State.Play);
+        _gauge += n;
+        if (_gauge > gauge)
+            _gauge = gauge;
+        GaugeBar.value = _gauge / gauge;
+        tMP_Text.text = $"{_gauge}";
+    }
 
     public void Gauge_Reset()
     {
@@ -71,15 +85,15 @@ public class UI_Manager : MonoBehaviour
 
     void Add_Queue()
     {
-        int[] Deck_Array = new int[5];
-        for (int i = 0; i < 5; i++)
+        int[] Deck_Array = new int[Decks.Length];
+        for (int i = 0; i < Decks.Length; i++)
         {
             Deck_Array[i] = i;
         }
 
         Deck_Array = ShuffleArray(Deck_Array);
 
-        for (int i = 0; i < 5; i++) // 큐에 셔플된 배열 값 저장
+        for (int i = 0; i < Decks.Length; i++) // 큐에 셔플된 배열 값 저장
         {
             Deck_Queue.Enqueue(Deck_Array[i]);
         }
@@ -112,7 +126,9 @@ public class UI_Manager : MonoBehaviour
         Deck_Queue.Enqueue(UsedDeck);
 
         Card[4].transform.GetChild(0).transform.position = Card[UsedCard].transform.position;
+        Card[4].transform.GetChild(0).transform.GetComponent<Deck>().defalutPos = Card[UsedCard].transform.position;
         Card[4].transform.GetChild(0).SetParent(Card[UsedCard].transform);
+
 
         GameObject obj = Instantiate(Decks[Deck_Queue.Dequeue()], Card[4].transform.position, Quaternion.identity);
         obj.transform.SetParent(Card[4].transform);

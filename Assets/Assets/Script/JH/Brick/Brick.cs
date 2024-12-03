@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -12,7 +13,7 @@ public class Brick : MonoBehaviour
     public String block_name;
     //protected Scrollbar scrollbar;
     public static float ball_Dmg = 10;
-
+    protected int fire_ball_hit_count;
     public static Brick instance;
 
     private void Awake()
@@ -24,6 +25,7 @@ public class Brick : MonoBehaviour
     {
         Bricks.Add(this);
         Hp_Setting();
+        StartCoroutine(Fire_Ball_Hit());
     }
 
     private void Hp_Setting()
@@ -40,10 +42,12 @@ public class Brick : MonoBehaviour
         //transform.GetChild(1).GetChild(0).gameObject.SetActive(true);
     }
 
-    public virtual void Hit(float dmg = 0)
+    public virtual void Hit(float dmg = -1)
     {
-        if (dmg == 0)
+        if (dmg == -1)
             curHp -= ball_Dmg;
+        else if (dmg == 0)
+            return;
         else
             curHp -= dmg;
 
@@ -58,12 +62,45 @@ public class Brick : MonoBehaviour
 
     protected virtual void OnCollisionEnter(Collision other)
     {
-        if (other.collider.CompareTag("ball") && block_name != "Indestructible")
+        if (block_name == "Indestructible")
+            return;
+
+        if (other.collider.CompareTag("ball"))
+        {
+            if (block_name == "Diamond")
+                Hit(1);
+            else
+                Hit();
+        }
+        else if (other.collider.CompareTag("Ninja"))
+            Hit(1);
+        else if (other.collider.CompareTag("Fire"))
         {
             Hit();
+            fire_ball_hit_count++;
         }
-        else if (other.collider.CompareTag("Ninja") && block_name != "Indestructible")
-            Hit(1);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Archer") && block_name != "Indestructible")
+        {
+            if (block_name == "Diamond")
+                Hit(1);
+            else
+                Hit();
+        }
+    }
+
+    protected IEnumerator Fire_Ball_Hit()
+    {
+        while (true)
+        {
+            yield return new WaitUntil(() => GameManager.manager._state == State.Shoot);
+            yield return new WaitUntil(() => GameManager.manager._state == State.Play);
+            Hit(fire_ball_hit_count);
+            fire_ball_hit_count = 0;
+        }
     }
 
     public void ChangeDmg(float _Dmg)

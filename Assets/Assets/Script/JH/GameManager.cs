@@ -14,10 +14,25 @@ public class GameManager : MonoBehaviour
     public static GameManager manager;
     public GameObject player;
     public int UsedDeck;
+    float play_time;
     private void Awake()
     {
         if (manager == null) manager = this;
         else Destroy(gameObject);
+    }
+    private void Update()
+    {
+        if (_state == State.Shoot)
+        {
+            play_time += Time.deltaTime;
+            if (play_time > 5)
+                Time.timeScale = 2;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            play_time = 0;
+        }
     }
 
     public void Game_ReStart()

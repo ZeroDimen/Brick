@@ -9,6 +9,8 @@ TagManager:
   - bbox
   - ball
   - Ninja
+  - Archer
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -23,8 +25,8 @@ TagManager:
   - 
   - floor
   - ball
-  - 
-  - 
+  - Archer
+  - Fire
   - 
   - 
   - 

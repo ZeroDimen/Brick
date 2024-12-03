@@ -40,7 +40,7 @@ public class Gravity_Block : Brick
 
     protected override void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("ball") || other.gameObject.CompareTag("Ninja"))
+        if (other.collider.CompareTag("ball") || other.collider.CompareTag("Ninja") || other.collider.CompareTag("Fire"))
         {
             other.transform.position = new Vector2(0, -5f);
             Destroy(gameObject);

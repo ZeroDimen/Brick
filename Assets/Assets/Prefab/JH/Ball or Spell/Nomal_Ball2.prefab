@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8716678372120861390}
   - component: {fileID: 2691691429990967571}
   - component: {fileID: 4706840195936954912}
-  - component: {fileID: 4312706333657051432}
   - component: {fileID: -120299825693599409}
   - component: {fileID: -8372596125497482394}
+  - component: {fileID: -1529379502266240908}
   m_Layer: 12
   m_Name: Nomal_Ball2
   m_TagString: ball
@@ -194,21 +194,6 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &4312706333657051432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4562051781919055751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b627e54d27a85594983450ca1f3c1fea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0}
-  damage: 20
-  ball_Name: 
 --- !u!54 &-120299825693599409
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -257,6 +242,21 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.2506503
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-1529379502266240908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4562051781919055751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 876947958e5293340847d4876aa19407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: 0, y: 0}
+  damage: 20
+  ball_Name: 
 --- !u!1 &6901288248417019882
 GameObject:
   m_ObjectHideFlags: 0

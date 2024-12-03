@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4259399778593492388
+--- !u!1 &3336008837069197956
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8262328691029996461}
-  - component: {fileID: 7995060058140787924}
-  - component: {fileID: 6661536863001925955}
-  - component: {fileID: 5087882977817490815}
+  - component: {fileID: 5118786464906026038}
+  - component: {fileID: 2946845444026678587}
+  - component: {fileID: 8078155616621084962}
+  - component: {fileID: 4864901996787842617}
   m_Layer: 5
-  m_Name: Nomal Ball3_UI
+  m_Name: Clock_Ball_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &8262328691029996461
+--- !u!224 &5118786464906026038
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4259399778593492388}
+  m_GameObject: {fileID: 3336008837069197956}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -38,21 +38,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &7995060058140787924
+--- !u!222 &2946845444026678587
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4259399778593492388}
+  m_GameObject: {fileID: 3336008837069197956}
   m_CullTransparentMesh: 1
---- !u!114 &6661536863001925955
+--- !u!114 &8078155616621084962
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4259399778593492388}
+  m_GameObject: {fileID: 3336008837069197956}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f64dfa7f4c901d2418ab44d6ce0548e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d75d3c738f6585545bc23575a1cc679a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -76,18 +76,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5087882977817490815
+--- !u!114 &4864901996787842617
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4259399778593492388}
+  m_GameObject: {fileID: 3336008837069197956}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 290b6350527cf764fbbe9a8f03240416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 4562051781919055751, guid: ee90a0fa4d3c2d7479089958a085bef2, type: 3}
-  n: 2
-  cost: 30
+  card: {fileID: 1115107720815277162, guid: aef2fd44e81d38c45895f6da92613a6e, type: 3}
+  n: 7
+  cost: 20

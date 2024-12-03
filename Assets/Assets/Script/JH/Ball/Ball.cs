@@ -4,20 +4,20 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     public static List<Ball> balls = new List<Ball>();
-    Camera miniCam;
-    GameObject previewBall;     // 공의 동선을 보여줄 공
+    protected Camera miniCam;
+    protected GameObject previewBall;     // 공의 동선을 보여줄 공
     protected Rigidbody rigid;
-    RaycastHit hit;
-    LayerMask layerMask;        // 공이 부딪힐 레이어 종류
-    LineRenderer lineRenderer;  // 공의 동선을 나타낼 선
+    protected RaycastHit hit;
+    protected LayerMask layerMask;        // 공이 부딪힐 레이어 종류
+    protected LineRenderer lineRenderer;  // 공의 동선을 나타낼 선
     Vector2 mousePos;
-    Vector2 reflectDirection;
+    protected Vector2 reflectDirection;
     public Vector2 direction;          // 공이 날아갈 방향
     protected Vector2 normal;
-    Vector2 reflect;
+    protected Vector2 reflect;
 
     public float damage;
-    float rayDistance = 40f;
+    protected float rayDistance = 40f;
     public string ball_Name;
 
     protected virtual void Start()
@@ -82,66 +82,21 @@ public class Ball : MonoBehaviour
                 rigid.velocity = direction * 10f;
                 miniCam.transform.position = new Vector3(0, 0.9f, -10);
                 GameManager.manager.Change_State(State.Shoot);
-                if (ball_Name == "Ninja")
-                {
-                    Ninja_Ball.die_count = 0;
-                }
             }
             else
             {
                 lineRenderer.enabled = false;
                 previewBall.SetActive(false);
             }
-
-            if (transform.position.y < -4f)
-            {
-                if (ball_Name == "Ninja")
-                {
-                    Ninja_Ball.die_count++;
-
-                    if (GameManager.manager.player == gameObject)
-                    {
-                        for (int i = 1; i < Ninja_Ball.Ninja.Count; i++)
-                        {
-                            if (Ninja_Ball.Ninja[i] != null && Ninja_Ball.Ninja[i] != gameObject)
-                            {
-                                miniCam.transform.position = new Vector3(0, Ninja_Ball.Ninja[i].transform.position.y, -10);
-                                GameManager.manager.player = Ninja_Ball.Ninja[i];
-                                break;
-                            }
-                        }
-                    }
-
-                    if (Ninja_Ball.die_count == Ninja_Ball.Ninja.Count)
-                    {
-                        Ninja_Ball.Ninja.Clear();
-                        Ninja_Ball.die_count = 0;
-                        MiniCam.posReset = true;
-                        GameManager.manager.Change_State(State.Standby);
-                    }
-                    Destroy(gameObject);
-
-                    // 닌자 카메라 대장 죽으면 다 죽는 버전
-                    // if (GameManager.manager.player == gameObject)
-                    // {
-                    //     foreach (var ball in Ninja_Ball.Ninja)
-                    //         if (ball != null && ball != gameObject)
-                    //             Destroy(ball);
-                    //     MiniCam.posReset = true;
-                    //     GameManager.manager.Change_State(State.Standby);
-                    //     Destroy(gameObject);
-                    // }
-                    // else
-                    //     Destroy(gameObject);
-                    //
-                }
-                else
-                {
-                    MiniCam.posReset = true;
-                    GameManager.manager.Change_State(State.Standby);
-                    Destroy(gameObject);
-                }
-            }
+        }
+    }
+    protected virtual void Destroy_Ball()
+    {
+        if (transform.position.y < -4f)
+        {
+            MiniCam.posReset = true;
+            GameManager.manager.Change_State(State.Standby);
+            Destroy(gameObject);
         }
     }
     protected virtual void OnCollisionEnter(Collision other)

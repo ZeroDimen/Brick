@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8078155616621084962}
   - component: {fileID: 4864901996787842617}
   m_Layer: 5
-  m_Name: Nomal Ball2_UI
+  m_Name: Archer_Ball_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4a977e20b0f5df546bc28d8d48dcd5ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e7f9983a2f71977429f7b0dadaf5eb08, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -88,6 +88,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290b6350527cf764fbbe9a8f03240416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 2987322629882759597, guid: 6d13721de927f314cbc6824c49118e27, type: 3}
-  n: 1
+  card: {fileID: 531142474478619440, guid: 25b2bc338c6f0354eb5f6c8928dfe402, type: 3}
+  n: 5
   cost: 20

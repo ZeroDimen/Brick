@@ -30,7 +30,8 @@ public class Rotation_Hit_Block : Brick
 
     protected override void OnCollisionEnter(Collision other)
     {
-
+        if (other.collider.CompareTag("Fire"))
+            fire_ball_hit_count++;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -38,5 +39,10 @@ public class Rotation_Hit_Block : Brick
             Hit();
         else if (other.CompareTag("Ninja"))
             Hit(1);
+        else if (other.CompareTag("Fire"))
+        {
+            Hit();
+            fire_ball_hit_count++;
+        }
     }
 }

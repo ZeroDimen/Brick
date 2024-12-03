@@ -5201,9 +5201,13 @@ MonoBehaviour:
   Decks:
   - {fileID: 3489549678339406220, guid: a18ddf42cd3d0f841ba5a4e13a008742, type: 3}
   - {fileID: 3336008837069197956, guid: 3a1738f7c4dbd4f48a82ca96e52f4ba9, type: 3}
-  - {fileID: 4259399778593492388, guid: 7e0d219fd86f4e346a9286db6bc4b3e3, type: 3}
+  - {fileID: 3336008837069197956, guid: b1242d13fb12ca7408d960c620db5232, type: 3}
   - {fileID: 4687184367472631730, guid: 0c66997493b28a6498b513f963e01018, type: 3}
   - {fileID: 7253076271986815255, guid: 0e58b9e051e132c408df170b225babcf, type: 3}
+  - {fileID: 3336008837069197956, guid: 714dbe90e119cd74c85eedf47b905e5a, type: 3}
+  - {fileID: 3336008837069197956, guid: 35541f4d447ba474d8062986f70500da, type: 3}
+  - {fileID: 3336008837069197956, guid: 4eb9cc49f4c1642499f899af4b9e698d, type: 3}
+  - {fileID: 3336008837069197956, guid: 3fcd9a3ad9325a541ae521c67cd90b4e, type: 3}
   Menu_Panel: {fileID: 640601613}
   Map: {fileID: 1016688968}
   Menu: {fileID: 1310649807}
@@ -8223,7 +8227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &132829997
 BoxCollider:
   m_ObjectHideFlags: 0

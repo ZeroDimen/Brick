@@ -19,21 +19,14 @@ public class Diamond_Brick : Brick
 
     }
 
-    public override void Hit(float dmg = 0)
-    {
-        curHp -= 1;
-        if (curHp <= 0)
-            Destroy(gameObject);
-        else
-        {
-            tMP_Text.text = $"{curHp}";
-            //scrollbar.size = curHp / hp;
-        }
-    }
-
     protected override void OnCollisionEnter(Collision other)
     {
         if (other.collider.CompareTag("ball") || other.collider.CompareTag("Ninja"))
-            Hit();
+            Hit(1);
+        else if (other.collider.CompareTag("Fire"))
+        {
+            Hit(1);
+            fire_ball_hit_count++;
+        }
     }
 }

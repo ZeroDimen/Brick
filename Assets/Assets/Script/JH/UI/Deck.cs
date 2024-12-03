@@ -12,7 +12,7 @@ public class Deck : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     public GameObject card;
     GameObject obj;
     Camera miniCam;
-    Vector2 defalutPos;
+    public Vector2 defalutPos;
     Vector2 curPos;
     Vector3 viewportPos;
     Image img;
@@ -81,6 +81,9 @@ public class Deck : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
                 viewportPos = miniCam.ScreenToViewportPoint(Input.mousePosition);
                 if (viewportPos.x < 0 || viewportPos.x > 1 || viewportPos.y < 0 || viewportPos.y > 1)
                 {
+                    // 슬라이더 바 클릭을 위해서... 개선 필요
+                    if (GameManager.manager.player != null && GameManager.manager.player.name == "Slide_Ball(Clone)")
+                        return;
                     // 자기 자신 클릭 안되도록
                     pointer.position = Input.mousePosition;
                     graphic.Raycast(pointer, results);
