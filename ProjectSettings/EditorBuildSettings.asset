@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Assets/Scenes/JH/Map1.unity
-    guid: 57cb57ad8dad00a48913b9c061ec599d
+  - enabled: 1
+    path: Assets/Assets/Scenes/DG/Main_Scene.unity
+    guid: 8875388ca1b50354683c9bcfc0360007
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: 05b911578586fe04ebaa8dc782d374c1, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 262bee86493301c4c8333438dd0c0814, type: 2}

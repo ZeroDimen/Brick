@@ -8,7 +8,7 @@ PlayerSettings:
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 0
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -908,11 +908,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 226e9309-a06f-48e6-ba5e-6c0c3f349991
+  cloudProjectId: d4182bee-5003-458d-90de-3c2879dc1810
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Brick
-  organizationId: life_is_tired
+  projectName: Brick (1)
+  organizationId: unity20193151
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

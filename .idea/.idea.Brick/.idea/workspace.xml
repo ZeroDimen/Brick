@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d800618-4c2c-499a-bd42-894de983c2b4" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/Scenes/JH/Map1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Scenes/JH/Map1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/JH/Ball.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/JH/Ball.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/JH/Brick.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/JH/Brick.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Brick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Brick/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Scenes/DG/Main_Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Scenes/DG/Main_Scene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Button_Action.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Button_Action.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Carousel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Carousel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Json_Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/Json_Test.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Player_Data.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/Player_Data.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/SwipeUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/SwipeUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/UI_Action.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/UI_Action.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +25,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Cards_Image_Making.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Json_Test.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Player_Data.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Read_GameData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/SwipeUI_Button.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -30,20 +39,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "JH",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;null&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Unity 에디터에 연결.Unity 에디터에 연결">
     <configuration name="유닛 테스트(배치 모드)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.48f1\Editor\Unity.exe" />
@@ -99,6 +108,20 @@
       <workItem from="1727949429569" duration="38000" />
       <workItem from="1727949475527" duration="5964000" />
       <workItem from="1727970110189" duration="4950000" />
+      <workItem from="1732031145301" duration="64000" />
+      <workItem from="1732031219051" duration="872000" />
+      <workItem from="1732038625218" duration="25000" />
+      <workItem from="1732038680804" duration="522000" />
+      <workItem from="1732116893677" duration="44000" />
+      <workItem from="1732116945857" duration="4197000" />
+      <workItem from="1732132682589" duration="891000" />
+      <workItem from="1732380933135" duration="98000" />
+      <workItem from="1732732713769" duration="849000" />
+      <workItem from="1732809071156" duration="842000" />
+      <workItem from="1732951578318" duration="4377000" />
+      <workItem from="1732982922622" duration="15724000" />
+      <workItem from="1733050721182" duration="1788000" />
+      <workItem from="1733135909270" duration="6286000" />
     </task>
     <servers />
   </component>
