@@ -5208,6 +5208,7 @@ MonoBehaviour:
   - {fileID: 3336008837069197956, guid: 35541f4d447ba474d8062986f70500da, type: 3}
   - {fileID: 3336008837069197956, guid: 4eb9cc49f4c1642499f899af4b9e698d, type: 3}
   - {fileID: 3336008837069197956, guid: 3fcd9a3ad9325a541ae521c67cd90b4e, type: 3}
+  - {fileID: 3336008837069197956, guid: 9c09ecb3dd2b38b4683cfc692158773d, type: 3}
   Menu_Panel: {fileID: 640601613}
   Map: {fileID: 1016688968}
   Menu: {fileID: 1310649807}

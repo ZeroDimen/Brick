@@ -16,7 +16,8 @@ public class Gravity_Block : Brick
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2.2f);
         foreach (Collider collider in hitColliders)
         {
-            if (collider.CompareTag("ball") || collider.CompareTag("Ninja"))
+            if (collider.CompareTag("ball") || collider.CompareTag("Ninja")
+            || collider.CompareTag("Fire") || collider.CompareTag("Archer"))
             {
                 Rigidbody rb = collider.GetComponent<Rigidbody>();
                 if (rb != null)

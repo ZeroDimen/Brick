@@ -10,7 +10,7 @@ public class Ball : MonoBehaviour
     protected RaycastHit hit;
     protected LayerMask layerMask;        // 공이 부딪힐 레이어 종류
     protected LineRenderer lineRenderer;  // 공의 동선을 나타낼 선
-    Vector2 mousePos;
+    protected Vector2 mousePos;
     protected Vector2 reflectDirection;
     public Vector2 direction;          // 공이 날아갈 방향
     protected Vector2 normal;
@@ -63,7 +63,7 @@ public class Ball : MonoBehaviour
                     return;
 
                 // CircleCast가 충돌했을때 원의 중심
-                previewBall.transform.position = (Vector2)hit.point - direction.normalized * 0.25f;
+                previewBall.transform.position = (Vector2)hit.point + (Vector2)hit.normal * (transform.localScale.x / 2);
 
                 // 반사각
                 reflectDirection = Vector2.Reflect(direction, (Vector2)hit.normal);
@@ -71,8 +71,8 @@ public class Ball : MonoBehaviour
 
                 // 두 직선에 필요한 3개의 점
                 lineRenderer.SetPosition(0, transform.position);
-                lineRenderer.SetPosition(1, (Vector2)hit.point);
-                lineRenderer.SetPosition(2, (Vector2)hit.point + reflectDirection.normalized * 3);
+                lineRenderer.SetPosition(1, (Vector2)hit.point + (Vector2)hit.normal * (transform.localScale.x / 2));
+                lineRenderer.SetPosition(2, (Vector2)hit.point + (Vector2)hit.normal * (transform.localScale.x / 2) + reflectDirection.normalized * 3);
 
                 previewBall.SetActive(true);
                 lineRenderer.enabled = true;
