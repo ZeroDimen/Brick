@@ -15,51 +15,63 @@ public class Json_Test : MonoBehaviour
                 {
                     new CardData
                     {
-                        CardNumber = 0001,CardName = "일반 공", CardLevel = 1, CardDamage = 10 , CardIsHave = true
+                        CardNumber = 0001, CardName = "일반 공", CardCost = 1, CardLevel = 0, CardDamage = 10,
+                        CardIsHave = true
                     },
                     new CardData
                     {
-                        CardNumber = 0002, CardName = "일반 공+", CardLevel = 1,  CardDamage = 15, CardIsHave = false
+                        CardNumber = 0002, CardName = "일반 공+", CardCost = 7, CardLevel = 1, CardDamage = 15,
+                        CardIsHave = false
                     },
                     new CardData
                     {
-                        CardNumber = 0003, CardName = "닌자", CardLevel = 1,  CardDamage = 30, CardIsHave = true
+                        CardNumber = 0003, CardName = "닌자", CardCost = 6, CardLevel = 2, CardDamage = 30,
+                        CardIsHave = true
                     },
                     new CardData
                     {
-                        CardNumber = 0004, CardName = "화염 마법사", CardLevel = 1,  CardDamage = 30, CardIsHave = true
+                        CardNumber = 0004, CardName = "화염 마법사", CardCost = 6, CardLevel = 3, CardDamage = 30,
+                        CardIsHave = true
                     },
                     new CardData
                     {
-                        CardNumber = 0005, CardName = "궁수", CardLevel = 1,  CardDamage = 30, CardIsHave = true
+                        CardNumber = 0005, CardName = "궁수", CardCost = 5, CardLevel = 4, CardDamage = 30,
+                        CardIsHave = true
                     },
                     new CardData
                     {
-                        CardNumber = 0006, CardName = "모자람", CardLevel = 1,  CardDamage = 30, CardIsHave = true
+                        CardNumber = 0006, CardName = "모자람", CardCost = 5, CardLevel = 5, CardDamage = 30,
+                        CardIsHave = true
                     },
                     new CardData
                     {
-                        CardNumber = 0007, CardName = "번개", CardLevel = 2,  CardDamage = 30, CardIsHave = false
+                        CardNumber = 0007, CardName = "번개", CardCost = 4, CardLevel = 6, CardDamage = 30,
+                        CardIsHave = false
                     },
                     new CardData
                     {
-                        CardNumber = 0008, CardName = "시계", CardLevel = 2,  CardDamage = 30, CardIsHave = false
+                        CardNumber = 0008, CardName = "시계", CardCost = 4, CardLevel = 7, CardDamage = 30,
+                        CardIsHave = false
                     },
                     new CardData
                     {
-                        CardNumber = 0009, CardName = "먹보", CardLevel = 3,  CardDamage = 30, CardIsHave = false
+                        CardNumber = 0009, CardName = "먹보", CardCost = 3, CardLevel = 8, CardDamage = 30,
+                        CardIsHave = false
                     },
                     new CardData
                     {
-                        CardNumber = 0010, CardName = "블츠", CardLevel = 4,  CardDamage = 30, CardIsHave = false
+                        CardNumber = 0010, CardName = "블츠", CardCost = 3, CardLevel = 9, CardDamage = 30,
+                        CardIsHave = false
                     },
                     new CardData
                     {
-                        CardNumber = 0011, CardName = "시간정지", CardLevel = 4,  CardDamage = 30, CardIsHave = false
+                        CardNumber = 0011, CardName = "시간정지", CardCost = 2, CardLevel = 10, CardDamage = 30,
+                        CardIsHave = false
                     },
                     new CardData
                     {
-                        CardNumber = 0012, CardName = "발사지정", CardLevel = 5,  CardDamage = 30, CardIsHave = false
+                        CardNumber = 0012, CardName = "발사지정", CardCost = 2, CardLevel = 11, CardDamage = 30,
+                        CardIsHave = false
                     },
                 }
             }

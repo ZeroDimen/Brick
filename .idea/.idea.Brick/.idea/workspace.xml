@@ -7,14 +7,13 @@
     <list default="true" id="1d800618-4c2c-499a-bd42-894de983c2b4" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Brick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Brick/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Assets/Scenes/DG/Main_Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Scenes/DG/Main_Scene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Button_Action.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Button_Action.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Carousel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Carousel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Cards_Image_Making.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/Cards_Image_Making.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Json_Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/Json_Test.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Player_Data.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/Player_Data.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/SwipeUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/SwipeUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/UI_Action.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/UI_Action.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Read_GameData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/Read_GameData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/SelectMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/SelectMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/JH/Ball/Archer_Ball.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/JH/Ball/Archer_Ball.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,11 +24,13 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Card_Action.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Cards_Image_Making.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Json_Test.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Player_Data.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Read_GameData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/SwipeUI_Button.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Animation/CoroutineTween.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -122,6 +123,19 @@
       <workItem from="1732982922622" duration="15724000" />
       <workItem from="1733050721182" duration="1788000" />
       <workItem from="1733135909270" duration="6286000" />
+      <workItem from="1733312661429" duration="4288000" />
+      <workItem from="1733342063276" duration="4850000" />
+      <workItem from="1733386730708" duration="2954000" />
+      <workItem from="1733409948348" duration="4533000" />
+      <workItem from="1733429636828" duration="2882000" />
+      <workItem from="1733492202549" duration="2263000" />
+      <workItem from="1733503022558" duration="4373000" />
+      <workItem from="1733590673790" duration="7213000" />
+      <workItem from="1733672916751" duration="166000" />
+      <workItem from="1733673091323" duration="3997000" />
+      <workItem from="1733775014773" duration="76000" />
+      <workItem from="1733775098106" duration="3675000" />
+      <workItem from="1733813126804" duration="803000" />
     </task>
     <servers />
   </component>

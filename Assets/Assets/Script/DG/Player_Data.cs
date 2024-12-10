@@ -22,6 +22,7 @@ public class Player_Data : MonoBehaviour
     {
         public ushort CardNumber; // 카드의 고유 번호
         public string CardName; // 카드의 이름
+        public int CardCost; // 카드의 비용
         public int CardLevel; // 카드의 레벨
         public float CardDamage; // 카드의 공격력
         public bool CardIsHave;
