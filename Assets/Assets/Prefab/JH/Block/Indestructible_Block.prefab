@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6947207557465046631}
   - component: {fileID: 3226282777118443848}
   - component: {fileID: 3091593947943919235}
-  - component: {fileID: -5416616868196530908}
+  - component: {fileID: 1758468177651913808}
   m_Layer: 8
   m_Name: Indestructible_Block
   m_TagString: bbox
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4185174674149411134}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: 2, y: -13.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -101,8 +101,8 @@ MonoBehaviour:
   tMP_Text: {fileID: 0}
   hp: 0
   curHp: 0
-  block_name: 
---- !u!65 &-5416616868196530908
+  block_name: Indestructible
+--- !u!65 &1758468177651913808
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

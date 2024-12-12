@@ -1,14 +1,16 @@
+using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.MPE;
+using System.Security.Cryptography;
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public class test : MonoBehaviour
 {
-    public static List<Ball> balls = new List<Ball>();
     protected Camera miniCam;
     protected GameObject previewBall;     // 공의 동선을 보여줄 공
-    protected Rigidbody rigid;
-    protected RaycastHit hit;
+    protected Rigidbody2D rigid;
+    protected List<Vector2> trajectoryPoints = new List<Vector2>();
+    protected List<Vector2> trajectoryDirection = new List<Vector2>();
+    int collision_count;
     protected LayerMask layerMask;        // 공이 부딪힐 레이어 종류
     protected LineRenderer lineRenderer;  // 공의 동선을 나타낼 선
     protected Vector2 mousePos;
@@ -17,7 +19,7 @@ public class Ball : MonoBehaviour
     public Vector2 direction;          // 공이 날아갈 방향
     protected Vector2 normal;
     protected Vector2 reflect;
-    protected Vector2 previousPoint;
+    protected Vector2 trajectoryPoint;
     [SerializeField]
     protected Vector2 rayDirection;
     protected Vector2 previewBallPos;
@@ -25,7 +27,7 @@ public class Ball : MonoBehaviour
 
     int pointIndex;
     public float damage;
-    protected float rayDistance = 10f;
+    protected float rayDistance = 6f;
     public string ball_Name;
 
     public float a;
@@ -36,9 +38,8 @@ public class Ball : MonoBehaviour
         Brick.ball_Dmg = damage;
         miniCam = GameObject.Find("MiniCam").GetComponent<Camera>();
         lineRenderer = GetComponent<LineRenderer>();
-        rigid = GetComponent<Rigidbody>();
+        rigid = GetComponent<Rigidbody2D>();
         previewBall = transform.GetChild(0).gameObject;
-        balls.Add(this);
 
         layerMask = 1 << LayerMask.NameToLayer("box") | 1 << LayerMask.NameToLayer("wall") | 1 << LayerMask.NameToLayer("bbox");
     }
@@ -73,64 +74,46 @@ public class Ball : MonoBehaviour
                     return;
                 }
 
-                lineRenderer.positionCount = 0;
-                previousPoint = transform.position;
-                lineRenderer.positionCount++;
-                lineRenderer.SetPosition(pointIndex++, transform.position);
+                trajectoryDirection.Clear();
+                trajectoryPoints.Clear();
+                trajectoryPoint = transform.position;
+                trajectoryPoints.Add(trajectoryPoint);
                 rayDirection = direction;
                 while (rayDistance > 0)
                 {
-                    if (Physics.SphereCast(previousPoint, transform.localScale.x / 2, rayDirection, out hit, rayDistance, layerMask))
+                    RaycastHit2D hit = Physics2D.CircleCast(trajectoryPoint, 0.26f, rayDirection, rayDistance, layerMask);
+                    if (hit.collider != null)
                     {
-                        rayDistance -= Vector2.Distance(previousPoint, hit.point);
-                        lineRenderer.positionCount++;
-                        Vector2 hit_center = (Vector2)hit.point + (Vector2)hit.normal * (transform.localScale.x / 2);
-                        lineRenderer.SetPosition(pointIndex++, hit_center);
-                        previousPoint = hit_center;
-                        rayDirection = Vector2.Reflect(rayDirection, (Vector2)hit.normal);
-                        if (f)
-                            Debug.Log($"preview : {rayDirection}");
+                        rayDistance -= Vector2.Distance(trajectoryPoint, hit.centroid);
+                        trajectoryPoints.Add(hit.centroid);
+                        rayDirection = Vector2.Reflect(rayDirection, hit.normal).normalized;
+                        trajectoryDirection.Add(rayDirection * 10);
+                        trajectoryPoint = hit.centroid + rayDirection * 0.05f;
+                        if (rayDistance == 0)
+                        {
+                            previewBallPos = trajectoryPoint;
+                            previewBall.transform.position = previewBallPos;
+                        }
                     }
                     else
                     {
-                        previewBallPos = previousPoint + rayDirection * rayDistance;
+                        previewBallPos = trajectoryPoint + rayDirection * rayDistance;
                         rayDistance = 0;
-                        lineRenderer.positionCount++;
-                        lineRenderer.SetPosition(pointIndex++, previewBallPos);
+                        trajectoryPoints.Add(previewBallPos);
                         previewBall.transform.position = previewBallPos;
                     }
+                    //rayDistance -= 0.5f;
                 }
+                lineRenderer.positionCount = trajectoryPoints.Count;
+                for (int i = 0; i < lineRenderer.positionCount; i++)
+                    lineRenderer.SetPosition(i, trajectoryPoints[i]);
                 if (f)
                     f = false;
-                rayDistance = 10f;
+                rayDistance = 6f;
                 pointIndex = 0;
                 previewBall.SetActive(true);
                 lineRenderer.enabled = true;
                 previousMousePos = mousePos;
-
-                ///////
-
-                // // 일반적인 직선이 아닌 원을 발사함
-                // if (Physics.SphereCast(transform.position, transform.localScale.x / 2, direction, out hit, rayDistance, layerMask) == false)
-                //     return;
-
-                // // CircleCast가 충돌했을때 원의 중심
-                // previewBall.transform.position = (Vector2)hit.point + (Vector2)hit.normal * (transform.localScale.x / 2);
-
-                // // 반사각
-                // reflectDirection = Vector2.Reflect(direction, (Vector2)hit.normal);
-
-
-                // // 두 직선에 필요한 3개의 점
-                // lineRenderer.SetPosition(0, transform.position);
-                // lineRenderer.SetPosition(1, (Vector2)hit.point + (Vector2)hit.normal * (transform.localScale.x / 2));
-                // lineRenderer.SetPosition(2, (Vector2)hit.point + (Vector2)hit.normal * (transform.localScale.x / 2) + reflectDirection.normalized * 3);
-
-                // previewBall.SetActive(true);
-                // lineRenderer.enabled = true;
-
-
-                //////
             }
             else if (Input.GetMouseButtonUp(0) && direction.y > 0.1f && GameManager.manager._state == State.Play) // real ball
             {
@@ -141,7 +124,7 @@ public class Ball : MonoBehaviour
             }
             else
             {
-                // lineRenderer.enabled = false;
+                lineRenderer.enabled = false;
                 previewBall.SetActive(false);
             }
         }
@@ -155,13 +138,19 @@ public class Ball : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    protected virtual void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         normal = other.contacts[0].normal;
         reflect = Vector2.Reflect(direction, normal).normalized;
-        if (rigid.velocity.magnitude != 10)
+
+        if (collision_count < trajectoryDirection.Count)
+        {
+            transform.position = trajectoryPoints[collision_count + 1];
+            rigid.velocity = trajectoryDirection[collision_count++];
+        }
+        else if (rigid.velocity.magnitude != 10)
             rigid.velocity = reflect * 10;
+
         direction = rigid.velocity;
-        Debug.Log(direction);
     }
 }
