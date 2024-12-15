@@ -25,7 +25,7 @@ public class Ball : MonoBehaviour
 
     int pointIndex;
     public float damage;
-    protected float rayDistance = 10f;
+    protected float rayDistance = 30f;
     public string ball_Name;
 
     public float a;
@@ -44,10 +44,6 @@ public class Ball : MonoBehaviour
     }
     protected virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            Time.timeScale = a;
-        if (Input.GetKeyDown(KeyCode.A))
-            f = true;
         if (GameManager.manager._state == State.Play || GameManager.manager._state == State.Shoot)
         {
             if (Input.GetMouseButton(0) && GameManager.manager._state == State.Play)    // preview ball
@@ -73,64 +69,20 @@ public class Ball : MonoBehaviour
                     return;
                 }
 
-                lineRenderer.positionCount = 0;
-                previousPoint = transform.position;
-                lineRenderer.positionCount++;
-                lineRenderer.SetPosition(pointIndex++, transform.position);
-                rayDirection = direction;
-                while (rayDistance > 0)
+                if (Physics.SphereCast(transform.position, 0.26f, direction, out hit, rayDistance, layerMask))
                 {
-                    if (Physics.SphereCast(previousPoint, transform.localScale.x / 2, rayDirection, out hit, rayDistance, layerMask))
-                    {
-                        rayDistance -= Vector2.Distance(previousPoint, hit.point);
-                        lineRenderer.positionCount++;
-                        Vector2 hit_center = (Vector2)hit.point + (Vector2)hit.normal * (transform.localScale.x / 2);
-                        lineRenderer.SetPosition(pointIndex++, hit_center);
-                        previousPoint = hit_center;
-                        rayDirection = Vector2.Reflect(rayDirection, (Vector2)hit.normal);
-                        if (f)
-                            Debug.Log($"preview : {rayDirection}");
-                    }
-                    else
-                    {
-                        previewBallPos = previousPoint + rayDirection * rayDistance;
-                        rayDistance = 0;
-                        lineRenderer.positionCount++;
-                        lineRenderer.SetPosition(pointIndex++, previewBallPos);
-                        previewBall.transform.position = previewBallPos;
-                    }
+                    previewBallPos = hit.point + hit.normal * 0.25f;
+                    previewBall.transform.position = previewBallPos;
+                    reflectDirection = Vector2.Reflect(direction, hit.normal).normalized;
+                    
+                    lineRenderer.SetPosition(0, transform.position);
+                    lineRenderer.SetPosition(1, previewBallPos);
+                    lineRenderer.SetPosition(2, previewBallPos + reflectDirection * 3f);
                 }
-                if (f)
-                    f = false;
-                rayDistance = 10f;
-                pointIndex = 0;
+                
                 previewBall.SetActive(true);
                 lineRenderer.enabled = true;
                 previousMousePos = mousePos;
-
-                ///////
-
-                // // 일반적인 직선이 아닌 원을 발사함
-                // if (Physics.SphereCast(transform.position, transform.localScale.x / 2, direction, out hit, rayDistance, layerMask) == false)
-                //     return;
-
-                // // CircleCast가 충돌했을때 원의 중심
-                // previewBall.transform.position = (Vector2)hit.point + (Vector2)hit.normal * (transform.localScale.x / 2);
-
-                // // 반사각
-                // reflectDirection = Vector2.Reflect(direction, (Vector2)hit.normal);
-
-
-                // // 두 직선에 필요한 3개의 점
-                // lineRenderer.SetPosition(0, transform.position);
-                // lineRenderer.SetPosition(1, (Vector2)hit.point + (Vector2)hit.normal * (transform.localScale.x / 2));
-                // lineRenderer.SetPosition(2, (Vector2)hit.point + (Vector2)hit.normal * (transform.localScale.x / 2) + reflectDirection.normalized * 3);
-
-                // previewBall.SetActive(true);
-                // lineRenderer.enabled = true;
-
-
-                //////
             }
             else if (Input.GetMouseButtonUp(0) && direction.y > 0.1f && GameManager.manager._state == State.Play) // real ball
             {
@@ -141,7 +93,7 @@ public class Ball : MonoBehaviour
             }
             else
             {
-                // lineRenderer.enabled = false;
+                lineRenderer.enabled = false;
                 previewBall.SetActive(false);
             }
         }

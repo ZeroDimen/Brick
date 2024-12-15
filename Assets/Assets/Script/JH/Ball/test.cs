@@ -25,9 +25,8 @@ public class test : MonoBehaviour
     protected Vector2 previewBallPos;
     protected Vector2 previousMousePos;
 
-    int pointIndex;
     public float damage;
-    protected float rayDistance = 6f;
+    protected float rayDistance = 30f;
     public string ball_Name;
 
     public float a;
@@ -44,7 +43,7 @@ public class test : MonoBehaviour
         layerMask = 1 << LayerMask.NameToLayer("box") | 1 << LayerMask.NameToLayer("wall") | 1 << LayerMask.NameToLayer("bbox");
     }
     protected virtual void Update()
-    {
+    { 
         if (Input.GetKeyDown(KeyCode.Space))
             Time.timeScale = a;
         if (Input.GetKeyDown(KeyCode.A))
@@ -74,43 +73,18 @@ public class test : MonoBehaviour
                     return;
                 }
 
-                trajectoryDirection.Clear();
-                trajectoryPoints.Clear();
-                trajectoryPoint = transform.position;
-                trajectoryPoints.Add(trajectoryPoint);
-                rayDirection = direction;
-                while (rayDistance > 0)
+                RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.26f, direction, rayDistance, layerMask);
+                if (hit)
                 {
-                    RaycastHit2D hit = Physics2D.CircleCast(trajectoryPoint, 0.26f, rayDirection, rayDistance, layerMask);
-                    if (hit.collider != null)
-                    {
-                        rayDistance -= Vector2.Distance(trajectoryPoint, hit.centroid);
-                        trajectoryPoints.Add(hit.centroid);
-                        rayDirection = Vector2.Reflect(rayDirection, hit.normal).normalized;
-                        trajectoryDirection.Add(rayDirection * 10);
-                        trajectoryPoint = hit.centroid + rayDirection * 0.05f;
-                        if (rayDistance == 0)
-                        {
-                            previewBallPos = trajectoryPoint;
-                            previewBall.transform.position = previewBallPos;
-                        }
-                    }
-                    else
-                    {
-                        previewBallPos = trajectoryPoint + rayDirection * rayDistance;
-                        rayDistance = 0;
-                        trajectoryPoints.Add(previewBallPos);
-                        previewBall.transform.position = previewBallPos;
-                    }
-                    //rayDistance -= 0.5f;
+                    previewBall.transform.position = hit.centroid;
+                    reflectDirection = Vector2.Reflect(direction, hit.normal).normalized;
+                    
+                    lineRenderer.SetPosition(0, transform.position);
+                    lineRenderer.SetPosition(1, hit.centroid);
+                    lineRenderer.SetPosition(2, hit.centroid + reflectDirection * 2f);
                 }
-                lineRenderer.positionCount = trajectoryPoints.Count;
-                for (int i = 0; i < lineRenderer.positionCount; i++)
-                    lineRenderer.SetPosition(i, trajectoryPoints[i]);
-                if (f)
-                    f = false;
-                rayDistance = 6f;
-                pointIndex = 0;
+                
+                
                 previewBall.SetActive(true);
                 lineRenderer.enabled = true;
                 previousMousePos = mousePos;
@@ -142,13 +116,8 @@ public class test : MonoBehaviour
     {
         normal = other.contacts[0].normal;
         reflect = Vector2.Reflect(direction, normal).normalized;
-
-        if (collision_count < trajectoryDirection.Count)
-        {
-            transform.position = trajectoryPoints[collision_count + 1];
-            rigid.velocity = trajectoryDirection[collision_count++];
-        }
-        else if (rigid.velocity.magnitude != 10)
+        
+        if (rigid.velocity.magnitude != 10)
             rigid.velocity = reflect * 10;
 
         direction = rigid.velocity;
