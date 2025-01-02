@@ -34,7 +34,6 @@ public class ScrollView_ContentResizer : MonoBehaviour
         else
         {
             nowHeight = currentHeight + increase_Y * (Num / 4) - increase_Y * 2;
-            Debug.Log((Num / 4));
         }
 
 

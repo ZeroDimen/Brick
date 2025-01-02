@@ -7,12 +7,28 @@
     <list default="true" id="1d800618-4c2c-499a-bd42-894de983c2b4" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Brick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Brick/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Assets/Scenes/DG/Main_Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Scenes/DG/Main_Scene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Card_Action.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/Card_Action.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Cards_Image_Making.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/Cards_Image_Making.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Json_Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/Json_Test.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Map_Button.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/Map_Button.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Player_Data.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/Player_Data.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Read_GameData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/Read_GameData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/Read_GameData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/Read_GameData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/ScrollView_ContentResizer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/ScrollView_ContentResizer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/SelectMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/SelectMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/JH/Ball/Archer_Ball.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/JH/Ball/Archer_Ball.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/SortCards.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/SortCards.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/SwipeUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/SwipeUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Script/DG/UI_Action.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Script/DG/UI_Action.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Sprite/JH/Ball_Ninja.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Sprite/JH/Ball_Ninja.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Sprite/JH/Ball_Nomal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Sprite/JH/Ball_Nomal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Sprite/JH/image (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Sprite/JH/image (1).png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Sprite/JH/image 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Sprite/JH/image 1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Sprite/JH/image.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Sprite/JH/image.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/AndroidResolverDependencies.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/AndroidResolverDependencies.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,13 +41,19 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Card_Action.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Card_Info_Remove_Action.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Card_Info_Use_Action.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Cards_Image_Making.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Init_Action.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Json_Test.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Player_Data.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Read_GameData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/Start_Button.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Script/DG/SwipeUI_Button.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/ExecuteEvents.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Animation/CoroutineTween.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -136,12 +158,31 @@
       <workItem from="1733775014773" duration="76000" />
       <workItem from="1733775098106" duration="3675000" />
       <workItem from="1733813126804" duration="803000" />
+      <workItem from="1733855360236" duration="72000" />
+      <workItem from="1733855441057" duration="2948000" />
+      <workItem from="1734248001137" duration="62000" />
+      <workItem from="1734248070793" duration="6144000" />
+      <workItem from="1734278387235" duration="82000" />
+      <workItem from="1734278479261" duration="2017000" />
+      <workItem from="1734367651724" duration="167000" />
+      <workItem from="1734367827450" duration="7281000" />
+      <workItem from="1734952164689" duration="84000" />
+      <workItem from="1734952256628" duration="3502000" />
+      <workItem from="1735027433897" duration="163000" />
+      <workItem from="1735027608066" duration="13861000" />
+      <workItem from="1735117632860" duration="55000" />
+      <workItem from="1735117695623" duration="7407000" />
+      <workItem from="1735146621121" duration="9804000" />
+      <workItem from="1735727878454" duration="67000" />
+      <workItem from="1735727954594" duration="7914000" />
+      <workItem from="1735757235298" duration="3156000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityProjectDiscoverer">
     <option name="hasUnityReference" value="true" />

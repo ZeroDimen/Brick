@@ -7,20 +7,21 @@ public class Player_Data : MonoBehaviour
     [Serializable]
     public class PlayerData // 사용자의 데이터
     {
-        public PlayerData(string _Name, uint _Money)
+        public PlayerData(string _Name, int _Money, int _Map)
         {
             Name = _Name; // 사용자의 이름
             Money = _Money; // 사용자의 재화
+            Map = _Map;
         }
 
         public string Name;
-        public uint Money;
+        public int Money;
+        public int Map;
     }
 
     [Serializable]
     public class CardData // 공의 데이터
     {
-        public ushort CardNumber; // 카드의 고유 번호
         public string CardName; // 카드의 이름
         public int CardCost; // 카드의 비용
         public int CardLevel; // 카드의 레벨
@@ -34,6 +35,7 @@ public class Player_Data : MonoBehaviour
     {
         public List<CardData> Cards = new List<CardData>();
     }
+    
 
     [Serializable]
     public class GameData // 게임에 사용되는 데이터

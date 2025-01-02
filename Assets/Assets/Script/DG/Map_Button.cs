@@ -1,3 +1,4 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 public class Map_Button : MonoBehaviour, IPointerClickHandler
@@ -12,6 +13,7 @@ public class Map_Button : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData Data)   // 영역 안에서 터치 및 때기 포함
     {
         Stage_set.GetComponent<SelectMap>().changeMap(SwipeUI.instance.currentPage);
+        // SelectMap.instance.changeMap(SwipeUI.instance.currentPage); // 아래의 방법은 오브젝트 비활성화로 인해 오류 발생
         
         if (Start_UI.activeSelf == false)
         {

@@ -10,7 +10,8 @@ public class SortCards : MonoBehaviour, IPointerClickHandler
 
     public Toggle IsHaveToggle;
     
-    private GameData gameData;
+    private GameData gameData_for_Card;
+    private GameData gameData_for_Deck;
     public TMP_Text cards_Sort_By;
 
     public TMP_Text cards_Num_Have;
@@ -68,24 +69,34 @@ public class SortCards : MonoBehaviour, IPointerClickHandler
     public void Sorting(string By)
     {
         cards_Sort_By.text = By;
-        gameData = SaveSystem.LoadPlayerData("save_1101");
-
-        cards_Num_Have.text = gameData.cardDataList.Cards.FindAll(card => card.CardIsHave).Count.ToString();
-        cards_Num_All.text = gameData.cardDataList.Cards.Count.ToString();
+        gameData_for_Card = SaveSystem.LoadPlayerData("save_1101");
+        gameData_for_Card.cardDataList.Cards = gameData_for_Card.cardDataList.Cards.GetRange(8, gameData_for_Card.cardDataList.Cards.Count - 8);
+        
+        cards_Num_Have.text = gameData_for_Card.cardDataList.Cards.FindAll(card => card.CardIsHave).Count.ToString();
+        cards_Num_All.text = gameData_for_Card.cardDataList.Cards.Count.ToString();
         
         if (IsHaveToggle.isOn)
         {
-            gameData.cardDataList.Cards = gameData.cardDataList.Cards.FindAll(card => card.CardIsHave);
+            gameData_for_Card.cardDataList.Cards = gameData_for_Card.cardDataList.Cards.FindAll(card => card.CardIsHave);
         }
         if (By == "Cost")
         {
-            gameData.cardDataList.Cards.Sort((card1, card2) => card1.CardCost.CompareTo(card2.CardCost));
+            gameData_for_Card.cardDataList.Cards.Sort((card1, card2) => card1.CardCost.CompareTo(card2.CardCost));
         }
         else if (By == "Level")
         {
-            gameData.cardDataList.Cards.Sort((card1, card2) => card1.CardLevel.CompareTo(card2.CardLevel));
+            gameData_for_Card.cardDataList.Cards.Sort((card1, card2) => card1.CardLevel.CompareTo(card2.CardLevel));
         }
-        Cards_Image_Making.instance.SpawnImages(gameData);
+        Cards_Image_Making.instance.SpawnCards(gameData_for_Card);
+
+        refresh_Deck();
+        
     }
-    
+
+    public void refresh_Deck()
+    {
+        gameData_for_Deck = SaveSystem.LoadPlayerData("save_1101");
+        gameData_for_Deck.cardDataList.Cards = gameData_for_Deck.cardDataList.Cards.GetRange(0,  8);
+        Cards_Image_Making.instance.SpawnDeck(gameData_for_Deck);
+    }
 }
