@@ -44,6 +44,7 @@ public class UI_Manager : MonoBehaviour
             GameObject obj = Instantiate(Decks[Deck_Queue.Dequeue()], card.transform.position, Quaternion.identity);
             obj.transform.SetParent(card.transform);
         }
+        GaugeBar.interactable = false;
         tMP_Text.text = $"{gauge}";
     }
 

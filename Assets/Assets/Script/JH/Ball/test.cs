@@ -1,14 +1,16 @@
+using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.MPE;
+using System.Security.Cryptography;
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public class test : MonoBehaviour
 {
-    public static List<Ball> balls = new List<Ball>();
     protected Camera miniCam;
     protected GameObject previewBall;     // 공의 동선을 보여줄 공
-    protected Rigidbody rigid;
-    protected RaycastHit hit;
+    protected Rigidbody2D rigid;
+    protected List<Vector2> trajectoryPoints = new List<Vector2>();
+    protected List<Vector2> trajectoryDirection = new List<Vector2>();
+    int collision_count;
     protected LayerMask layerMask;        // 공이 부딪힐 레이어 종류
     protected LineRenderer lineRenderer;  // 공의 동선을 나타낼 선
     protected Vector2 mousePos;
@@ -17,13 +19,12 @@ public class Ball : MonoBehaviour
     public Vector2 direction;          // 공이 날아갈 방향
     protected Vector2 normal;
     protected Vector2 reflect;
-    protected Vector2 previousPoint;
+    protected Vector2 trajectoryPoint;
     [SerializeField]
     protected Vector2 rayDirection;
     protected Vector2 previewBallPos;
     protected Vector2 previousMousePos;
 
-    int pointIndex;
     public float damage;
     protected float rayDistance = 30f;
     public string ball_Name;
@@ -36,14 +37,17 @@ public class Ball : MonoBehaviour
         Brick.ball_Dmg = damage;
         miniCam = GameObject.Find("MiniCam").GetComponent<Camera>();
         lineRenderer = GetComponent<LineRenderer>();
-        rigid = GetComponent<Rigidbody>();
+        rigid = GetComponent<Rigidbody2D>();
         previewBall = transform.GetChild(0).gameObject;
-        balls.Add(this);
 
         layerMask = 1 << LayerMask.NameToLayer("box") | 1 << LayerMask.NameToLayer("wall") | 1 << LayerMask.NameToLayer("bbox");
     }
     protected virtual void Update()
-    {
+    { 
+        if (Input.GetKeyDown(KeyCode.Space))
+            Time.timeScale = a;
+        if (Input.GetKeyDown(KeyCode.A))
+            f = true;
         if (GameManager.manager._state == State.Play || GameManager.manager._state == State.Shoot)
         {
             if (Input.GetMouseButton(0) && GameManager.manager._state == State.Play)    // preview ball
@@ -69,16 +73,17 @@ public class Ball : MonoBehaviour
                     return;
                 }
 
-                if (Physics.SphereCast(transform.position, 0.26f, direction, out hit, rayDistance, layerMask))
+                RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.26f, direction, rayDistance, layerMask);
+                if (hit)
                 {
-                    previewBallPos = hit.point + hit.normal * 0.25f;
-                    previewBall.transform.position = previewBallPos;
+                    previewBall.transform.position = hit.centroid;
                     reflectDirection = Vector2.Reflect(direction, hit.normal).normalized;
                     
                     lineRenderer.SetPosition(0, transform.position);
-                    lineRenderer.SetPosition(1, previewBallPos);
-                    lineRenderer.SetPosition(2, previewBallPos + reflectDirection * 3f);
+                    lineRenderer.SetPosition(1, hit.centroid);
+                    lineRenderer.SetPosition(2, hit.centroid + reflectDirection * 2f);
                 }
+                
                 
                 previewBall.SetActive(true);
                 lineRenderer.enabled = true;
@@ -107,13 +112,14 @@ public class Ball : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    protected virtual void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         normal = other.contacts[0].normal;
         reflect = Vector2.Reflect(direction, normal).normalized;
+        
         if (rigid.velocity.magnitude != 10)
             rigid.velocity = reflect * 10;
+
         direction = rigid.velocity;
-        Debug.Log(direction);
     }
 }
