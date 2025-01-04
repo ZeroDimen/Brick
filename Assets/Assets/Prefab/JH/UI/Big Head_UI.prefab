@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8078155616621084962}
   - component: {fileID: 4864901996787842617}
   m_Layer: 5
-  m_Name: Clock_Ball_UI
+  m_Name: Big Head_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d75d3c738f6585545bc23575a1cc679a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 195a0edd482090245a9efbe738b20a28, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -88,6 +88,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290b6350527cf764fbbe9a8f03240416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 1115107720815277162, guid: aef2fd44e81d38c45895f6da92613a6e, type: 3}
-  n: 7
+  card: {fileID: 4562051781919055751, guid: f9d50c567d141ba46adf3ede2507dab0, type: 3}
+  n: 6
   cost: 20

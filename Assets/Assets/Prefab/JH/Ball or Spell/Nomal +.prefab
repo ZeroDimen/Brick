@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8372596125497482394}
   - component: {fileID: -1529379502266240908}
   m_Layer: 12
-  m_Name: Nomal_Ball2
+  m_Name: Nomal +
   m_TagString: ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

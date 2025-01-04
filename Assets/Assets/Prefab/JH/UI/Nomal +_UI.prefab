@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8078155616621084962}
   - component: {fileID: 4864901996787842617}
   m_Layer: 5
-  m_Name: Nomal Ball2_UI
+  m_Name: Nomal +_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
