@@ -7,16 +7,18 @@ public class Player_Data : MonoBehaviour
     [Serializable]
     public class PlayerData // 사용자의 데이터
     {
-        public PlayerData(string _Name, int _Money, int _Map)
+        public PlayerData(string _Name, int _Money, int _Map, int _MaxMap)
         {
             Name = _Name; // 사용자의 이름
             Money = _Money; // 사용자의 재화
             Map = _Map;
+            MaxMap = _MaxMap;
         }
 
         public string Name;
         public int Money;
         public int Map;
+        public int MaxMap;
     }
 
     [Serializable]
