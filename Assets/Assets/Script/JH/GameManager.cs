@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     private int map;
     public string[] cardName = new string[8];
     public GameObject[] stage;
+    public GameObject clearPanel;
     
     private void Awake()
     {
@@ -112,5 +113,21 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         HS_ProjectileMover.flag = false;
+    }
+
+    public void GameClearPanel()
+    {
+        clearPanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void GameClear()
+    {
+        if (map > gameData.playerData.MaxMap)
+        { 
+            gameData.playerData.MaxMap = map;
+            SaveSystem.SavePlayerData(gameData, "save_1101"); // 파일저장
+        }
+        SceneManager.LoadScene("Main_Scene");
     }
 }
