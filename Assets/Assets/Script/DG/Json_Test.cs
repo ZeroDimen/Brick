@@ -14,102 +14,110 @@ public class Json_Test : MonoBehaviour
     {
         GameData gameData = new GameData()
         {
-            playerData = new PlayerData("Player_Test", 30000 , 0),
+            playerData = new PlayerData("Player_Test", 30000 , 0 , 0),
             cardDataList = new CardDataList()
             {
                 Cards = new List<CardData>
                 {
                     new CardData()
                     {
-                        CardName = "None"
+                        CardName = "None", CardCost = 0, CardLevel = 0, CardDamage = 0,
+                        CardCount = 0
                     },
                     new CardData()
                     {
-                        CardName = "None"
+                        CardName = "None", CardCost = 0, CardLevel = 0, CardDamage = 0,
+                        CardCount = 0
                     },
                     new CardData()
                     {
-                        CardName = "None"
+                        CardName = "None", CardCost = 0, CardLevel = 0, CardDamage = 0,
+                        CardCount = 0
                     },
                     new CardData()
                     {
-                        CardName = "None"
+                        CardName = "None", CardCost = 0, CardLevel = 0, CardDamage = 0,
+                        CardCount = 0
                     },
                     new CardData()
                     {
-                        CardName = "None"
+                        CardName = "None", CardCost = 0, CardLevel = 0, CardDamage = 0,
+                        CardCount = 0
                     },
                     new CardData()
                     {
-                        CardName = "None"
+                        CardName = "None", CardCost = 0, CardLevel = 0, CardDamage = 0,
+                        CardCount = 0
                     },
                     new CardData()
                     {
-                        CardName = "None"
+                        CardName = "None", CardCost = 0, CardLevel = 0, CardDamage = 0,
+                        CardCount = 0
                     },
                     new CardData()
                     {
-                        CardName = "None"
+                        CardName = "None", CardCost = 0, CardLevel = 0, CardDamage = 0,
+                        CardCount = 0
                     },
                     new CardData
                     {
-                        CardName = "Normal", CardCost = 1, CardLevel = 0, CardDamage = 10,
-                        CardIsHave = true
+                        CardName = "Normal", CardCost = 1, CardLevel = 1, CardDamage = 10,
+                        CardCount = 1000
                     },
                     new CardData
                     {
                         CardName = "Normal +", CardCost = 7, CardLevel = 1, CardDamage = 15,
-                        CardIsHave = false
+                        CardCount = 0
                     },
                     new CardData
                     {
                         CardName = "Ninja", CardCost = 6, CardLevel = 2, CardDamage = 30,
-                        CardIsHave = true
+                        CardCount = 1
                     },
                     new CardData
                     {
                         CardName = "Flame Magician", CardCost = 6, CardLevel = 3, CardDamage = 30,
-                        CardIsHave = true
+                        CardCount = 1
                     },
                     new CardData
                     {
                         CardName = "Archer", CardCost = 5, CardLevel = 4, CardDamage = 30,
-                        CardIsHave = true
+                        CardCount = 1
                     },
                     new CardData
                     {
                         CardName = "Big Head", CardCost = 5, CardLevel = 5, CardDamage = 30,
-                        CardIsHave = true
+                        CardCount = 1
                     },
                     new CardData
                     {
-                        CardName = "번개", CardCost = 4, CardLevel = 6, CardDamage = 30,
-                        CardIsHave = false
+                        CardName = "번개", CardCost = 4, CardLevel = 1, CardDamage = 30,
+                        CardCount = 0
                     },
                     new CardData
                     {
-                        CardName = "Clock", CardCost = 4, CardLevel = 7, CardDamage = 30,
-                        CardIsHave = false
+                        CardName = "Clock", CardCost = 4, CardLevel = 1, CardDamage = 30,
+                        CardCount = 0
                     },
                     new CardData
                     {
-                        CardName = "먹보", CardCost = 3, CardLevel = 8, CardDamage = 30,
-                        CardIsHave = false
+                        CardName = "먹보", CardCost = 3, CardLevel = 1, CardDamage = 30,
+                        CardCount = 0
                     },
                     new CardData
                     {
-                        CardName = "블츠", CardCost = 3, CardLevel = 9, CardDamage = 30,
-                        CardIsHave = false
+                        CardName = "블츠", CardCost = 3, CardLevel = 1, CardDamage = 30,
+                        CardCount = 0
                     },
                     new CardData
                     {
-                        CardName = "시간정지", CardCost = 2, CardLevel = 10, CardDamage = 30,
-                        CardIsHave = false
+                        CardName = "시간정지", CardCost = 2, CardLevel = 1, CardDamage = 30,
+                        CardCount = 0
                     },
                     new CardData
                     {
-                        CardName = "발사지정", CardCost = 2, CardLevel = 11, CardDamage = 30,
-                        CardIsHave = false
+                        CardName = "발사지정", CardCost = 2, CardLevel = 1, CardDamage = 30,
+                        CardCount = 0
                     },
                 }
             }

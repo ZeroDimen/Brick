@@ -1,4 +1,3 @@
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 public class Map_Button : MonoBehaviour, IPointerClickHandler

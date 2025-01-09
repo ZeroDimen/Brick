@@ -909,11 +909,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 226e9309-a06f-48e6-ba5e-6c0c3f349991
+  cloudProjectId: 60951103-dc5d-43ba-ba1e-109b5fed39fc
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: Brick
-  organizationId: life_is_tired
+  organizationId: unity20193151
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

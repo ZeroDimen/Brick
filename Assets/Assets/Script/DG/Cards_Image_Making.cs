@@ -13,6 +13,9 @@ public class Cards_Image_Making : MonoBehaviour
     
     public TMP_Text deck_Cost;
     public TMP_Text deck_Level;
+    public TMP_Text deck_Count;
+    public TMP_Text deck_Upgrade_text;
+    
     public GameObject cards_Sprite_Deck;
 
     
@@ -21,6 +24,9 @@ public class Cards_Image_Making : MonoBehaviour
     
     public TMP_Text cards_Cost;
     public TMP_Text cards_Level;
+    public TMP_Text cards_Count;
+    public TMP_Text cards_Upgrade_text;
+    
     public GameObject cards_Sprite_Card;
     
 
@@ -53,12 +59,14 @@ public class Cards_Image_Making : MonoBehaviour
         float spawnX = cardPrefab.GetComponent<RectTransform>().anchoredPosition.x;
         float spawnY = cardPrefab.GetComponent<RectTransform>().anchoredPosition.y;
 
+        int NeedCard;
+
         card_Clone = new GameObject[gameData.cardDataList.Cards.Count]; 
         
         for (int i = 0; i < gameData.cardDataList.Cards.Count; i++)
         {
             Image imageSprite = cards_Sprite_Card.GetComponent<Image>();
-            if (!gameData.cardDataList.Cards[i].CardIsHave)
+            if (gameData.cardDataList.Cards[i].CardCount == 0 && gameData.cardDataList.Cards[i].CardLevel == 1)
             {
                 imageSprite.color = Color.HSVToRGB(0f, 0f, 50 / 255f);
                 imageSprite.color = new Color(154 / 255f, 154 / 255f, 154 / 255f, 255f / 255f);
@@ -67,7 +75,6 @@ public class Cards_Image_Making : MonoBehaviour
             {
                 imageSprite.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
             }
-            
 
             for (int j = 1; j < cards_Sprite_List.Length; j++)
             {
@@ -84,6 +91,18 @@ public class Cards_Image_Making : MonoBehaviour
             
             cards_Level.text = gameData.cardDataList.Cards[i].CardLevel.ToString();
             cards_Cost.text = gameData.cardDataList.Cards[i].CardCost.ToString();
+            
+            NeedCard = Card_Upgrade_count(gameData.cardDataList.Cards[i].CardLevel);
+            // cards_Count.text = gameData.cardDataList.Cards[i].CardCount.ToString();
+            cards_Count.text = gameData.cardDataList.Cards[i].CardCount + " /  " + NeedCard;
+            if (gameData.cardDataList.Cards[i].CardCount >= NeedCard)
+            {
+                cards_Upgrade_text.text = "Upgrade";
+            }
+            else
+            {
+                cards_Upgrade_text.text = "Info";
+            }
 
             // UI 생성 개수에 따른 좌표 이동
             if (i == 0)
@@ -129,7 +148,9 @@ public class Cards_Image_Making : MonoBehaviour
             
         float spawnX = deckPrefab.GetComponent<RectTransform>().anchoredPosition.x;
         float spawnY = deckPrefab.GetComponent<RectTransform>().anchoredPosition.y;
-
+        
+        int NeedCard;
+        
         deck_Clone = new GameObject[gameData.cardDataList.Cards.Count];
         
         for (int i = 0; i < gameData.cardDataList.Cards.Count; i++)
@@ -152,6 +173,17 @@ public class Cards_Image_Making : MonoBehaviour
             
             deck_Level.text = gameData.cardDataList.Cards[i].CardLevel.ToString();
             deck_Cost.text = gameData.cardDataList.Cards[i].CardCost.ToString();
+            
+            NeedCard = Card_Upgrade_count(gameData.cardDataList.Cards[i].CardLevel);
+            deck_Count.text = gameData.cardDataList.Cards[i].CardCount + " /  " + NeedCard;
+            if (gameData.cardDataList.Cards[i].CardCount >= NeedCard)
+            {
+                deck_Upgrade_text.text = "Upgrade";
+            }
+            else
+            {
+                deck_Upgrade_text.text = "Info";
+            }
 
             // UI 생성 개수에 따른 좌표 이동
             if (i == 0)
@@ -203,16 +235,26 @@ public class Cards_Image_Making : MonoBehaviour
     public void Clicked_Sprite(string Card_Name) // 카드의 info창을 관리하는 함수
     {
         Transform card_Info;
-        if (card_Clone == null || Card_Use_Frame.activeSelf) // use 중 위쪽터치로 info 창이 꺼지는것 방지
+        CardData cardData;
+        
+        // use 중 위쪽터치로 info 창이 꺼지는것 방지 및 정보가 없는 deck은 info 창 작동 방지
+        if (card_Clone == null || Card_Use_Frame.activeSelf  || Card_Name == "") 
         {
             return;
         }
+        cardData = Read_GameData.instance.Read_Card_Info(Card_Name);
+        if (cardData.CardName == "None")
+        {
+            return;
+        }
+       
         GameObject[] combinedArray = card_Clone.Concat(deck_Clone).ToArray();
 
         
         for (int i = 0; i < combinedArray.Length; i++)
         {
             card_Info = combinedArray[i].transform.Find("Card_Info");
+            
             if (card_Info.gameObject.activeSelf && combinedArray[i].name == Card_Name)
             {
                 card_Info.gameObject.SetActive(false);
@@ -226,6 +268,66 @@ public class Cards_Image_Making : MonoBehaviour
                 card_Info.gameObject.SetActive(true);
             }
         }
-        
+    }
+
+    public int Card_Upgrade_count(int Now_Lv = -1) // 클래시로얄 일반 카드 기준 레벨업에 필요한 카드량를 반환해주는 함수
+    {
+        int Card_Upgrade_count = 0;
+
+        switch (Now_Lv)
+        {
+            default:
+                return 0;
+            case 1:
+                return 1;
+            case 2:
+                return 2;
+            case 3:
+                return 4;
+            case 4:
+                return 10;
+            case 5:
+                return 20;
+            case 6:
+                return 50;
+            case 7:
+                return 100;
+            case 8:
+                return 200;
+            case 9:
+                return 400;
+            case 10:
+                return 800;
+        }
+    }
+    public int Card_Upgrade_Money(int Now_Lv = -1) // 클래시로얄 일반 카드 기준 레벨업에 필요한 비용를 반환해주는 함수
+    {
+        int Card_Upgrade_count = 0;
+
+        switch (Now_Lv)
+        {
+            default:
+                return -1;
+            case 1:
+                return 0;
+            case 2:
+                return 5;
+            case 3:
+                return 20;
+            case 4:
+                return 50;
+            case 5:
+                return 150;
+            case 6:
+                return 400;
+            case 7:
+                return 1000;
+            case 8:
+                return 2000;
+            case 9:
+                return 4000;
+            case 10:
+                return 8000;
+        }
     }
 }

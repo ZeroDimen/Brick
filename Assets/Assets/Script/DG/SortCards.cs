@@ -18,6 +18,7 @@ public class SortCards : MonoBehaviour, IPointerClickHandler
     public TMP_Text cards_Num_All;
 
     private int i;
+    public string By; // 정렬기준
     private void Awake()
     {
         if (instance == null)
@@ -29,7 +30,8 @@ public class SortCards : MonoBehaviour, IPointerClickHandler
     // Start is called before the first frame update
     void Start()
     {
-        Sorting("Cost");
+        By = "Cost";
+        Sorting();
         IsHaveToggle.onValueChanged.AddListener(OnButton);
     }
     
@@ -43,11 +45,13 @@ public class SortCards : MonoBehaviour, IPointerClickHandler
             
         if (i == 0)
         {
-            Sorting("Cost");
+            By = "Cost";
+            Sorting();
         }
         else if (i == 1)
         {
-            Sorting("Level");
+            By = "Level";
+            Sorting();
         }
         
     }
@@ -57,27 +61,29 @@ public class SortCards : MonoBehaviour, IPointerClickHandler
         isHave = IsHaveToggle.isOn;
         if (i == 0)
         {
-            Sorting("Cost");
+            By = "Cost";
+            Sorting();
         }
         else if (i == 1)
         {
-            Sorting("Level");
+            By = "Level";
+            Sorting();
         }
     }
     
     
-    public void Sorting(string By)
+    public void Sorting()
     {
         cards_Sort_By.text = By;
         gameData_for_Card = SaveSystem.LoadPlayerData("save_1101");
         gameData_for_Card.cardDataList.Cards = gameData_for_Card.cardDataList.Cards.GetRange(8, gameData_for_Card.cardDataList.Cards.Count - 8);
         
-        cards_Num_Have.text = gameData_for_Card.cardDataList.Cards.FindAll(card => card.CardIsHave).Count.ToString();
+        cards_Num_Have.text = gameData_for_Card.cardDataList.Cards.FindAll(card => card.CardCount != 0 || card.CardLevel != 1).Count.ToString();
         cards_Num_All.text = gameData_for_Card.cardDataList.Cards.Count.ToString();
         
         if (IsHaveToggle.isOn)
         {
-            gameData_for_Card.cardDataList.Cards = gameData_for_Card.cardDataList.Cards.FindAll(card => card.CardIsHave);
+            gameData_for_Card.cardDataList.Cards = gameData_for_Card.cardDataList.Cards.FindAll(card => card.CardCount != 0 || card.CardLevel != 1);
         }
         if (By == "Cost")
         {
@@ -93,7 +99,7 @@ public class SortCards : MonoBehaviour, IPointerClickHandler
         
     }
 
-    public void refresh_Deck()
+    private void refresh_Deck()
     {
         gameData_for_Deck = SaveSystem.LoadPlayerData("save_1101");
         gameData_for_Deck.cardDataList.Cards = gameData_for_Deck.cardDataList.Cards.GetRange(0,  8);
