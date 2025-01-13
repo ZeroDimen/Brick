@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour
         if (map > gameData.playerData.MaxMap)
         { 
             gameData.playerData.MaxMap = map;
+            gameData.playerData.Money += 5000;
             SaveSystem.SavePlayerData(gameData, "save_1101"); // 파일저장
         }
         SceneManager.LoadScene("Main_Scene");
