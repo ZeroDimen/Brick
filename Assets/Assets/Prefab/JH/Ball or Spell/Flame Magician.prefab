@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5717722755003288355}
   - component: {fileID: 616974709919577483}
   m_Layer: 14
-  m_Name: Fire_Ball
+  m_Name: Flame Magician
   m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

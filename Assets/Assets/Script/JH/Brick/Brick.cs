@@ -52,7 +52,12 @@ public class Brick : MonoBehaviour
             curHp -= dmg;
 
         if (curHp <= 0)
+        {
+            Bricks.Remove(this);
+            if(Bricks.Count == 0)
+                GameManager.manager.GameClearPanel();
             Destroy(gameObject);
+        }
         else
         {
             tMP_Text.text = $"{curHp}";

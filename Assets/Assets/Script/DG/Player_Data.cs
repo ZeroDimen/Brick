@@ -13,7 +13,6 @@ public class Player_Data : MonoBehaviour
             Money = _Money; // 사용자의 재화
             Map = _Map;
             MaxMap = _MaxMap;
-            
         }
 
         public string Name;

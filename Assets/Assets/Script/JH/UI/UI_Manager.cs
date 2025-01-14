@@ -8,7 +8,8 @@ public class UI_Manager : MonoBehaviour
 {
     private Queue<int> Deck_Queue = new Queue<int>(); //선입선출 방식의 덱을 구현하기위한 큐
     public GameObject[] Card;
-    public GameObject[] Decks;
+    public GameObject[] Decks = new GameObject[8];
+    public GameObject[] cardList;
     public GameObject Menu_Panel;
     public GameObject Map;
     public GameObject Menu;
@@ -39,6 +40,7 @@ public class UI_Manager : MonoBehaviour
     }
     private void Start()
     {
+        Add_Deck();
         foreach (var card in Card)
         {
             GameObject obj = Instantiate(Decks[Deck_Queue.Dequeue()], card.transform.position, Quaternion.identity);
@@ -84,6 +86,38 @@ public class UI_Manager : MonoBehaviour
         tMP_Text.text = $"{gauge}";
     }
 
+    void Add_Deck()
+    {
+        Debug.Log(Decks.Length);
+        for (int i = 0; i < 8; i++)
+        {
+            string cardName = GameManager.manager.cardName[i];
+            switch (cardName)
+            {
+                case "Normal" :
+                    Decks[i] = cardList[0];
+                    break;
+                case "Normal +" :
+                    Decks[i] = cardList[1];
+                    break;
+                case "Ninja" :
+                    Decks[i] = cardList[2];
+                    break;
+                case "Flame Magician" :
+                    Decks[i] = cardList[3];
+                    break;
+                case "Archer" :
+                    Decks[i] = cardList[4];
+                    break;
+                case "Big Head" :
+                    Decks[i] = cardList[5];
+                    break;
+                case "Clock" :
+                    Decks[i] = cardList[6];
+                    break;
+            }
+        }
+    }
     void Add_Queue()
     {
         int[] Deck_Array = new int[Decks.Length];

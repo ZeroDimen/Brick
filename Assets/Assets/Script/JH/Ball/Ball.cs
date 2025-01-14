@@ -113,6 +113,5 @@ public class Ball : MonoBehaviour
         if (rigid.velocity.magnitude != 10)
             rigid.velocity = reflect * 10;
         direction = rigid.velocity;
-        Debug.Log(direction);
     }
 }

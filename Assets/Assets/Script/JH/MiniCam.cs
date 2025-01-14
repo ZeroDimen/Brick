@@ -20,7 +20,7 @@ public class MiniCam : MonoBehaviour
     {
         if (GameManager.manager.player == null && GameManager.manager._state == State.Play)
         {
-            //Scroll();
+            Scroll();
         }
     }
     private void FixedUpdate()

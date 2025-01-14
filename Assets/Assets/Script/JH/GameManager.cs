@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Player_Data;
 public enum State
 {
     Play,
@@ -10,15 +11,27 @@ public enum State
 }
 public class GameManager : MonoBehaviour
 {
+    private GameData gameData;
     public State _state;
     public static GameManager manager;
     public GameObject player;
     public int UsedDeck;
     float play_time;
+    private int map;
+    public string[] cardName = new string[8];
+    public GameObject[] stage;
+    public GameObject clearPanel;
+    
     private void Awake()
     {
         if (manager == null) manager = this;
         else Destroy(gameObject);
+        
+        gameData = SaveSystem.LoadPlayerData("save_1101"); // 파일 읽기 
+        map = gameData.playerData.Map; // 저장된 맵 번호
+        for (int i = 0; i < 8; i++)
+            cardName[i] = gameData.cardDataList.Cards[i].CardName; // 이름
+        stage[map].SetActive(true);
     }
     private void Update()
     {
@@ -100,5 +113,22 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         HS_ProjectileMover.flag = false;
+    }
+
+    public void GameClearPanel()
+    {
+        clearPanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void GameClear()
+    {
+        if (map > gameData.playerData.MaxMap)
+        { 
+            gameData.playerData.MaxMap = map;
+            gameData.playerData.Money += 5000;
+            SaveSystem.SavePlayerData(gameData, "save_1101"); // 파일저장
+        }
+        SceneManager.LoadScene("Main_Scene");
     }
 }
