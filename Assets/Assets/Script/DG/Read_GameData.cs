@@ -78,13 +78,15 @@ public class Read_GameData : MonoBehaviour
 
     public void Save_Gacha_Result(string CardName = null)
     {
+        Debug.Log(CardName);
         if (CardName == null)
         {
             Debug.Log("Read_GameData.Cs 오류");
             return;
         }
         gameData = SaveSystem.LoadPlayerData("save_1101"); // 반복해서 호출하는게 별로일거같음
-        for (int i = 8; i < gameData.cardDataList.Cards.Count; i++)
+        
+        for (int i = 0; i < gameData.cardDataList.Cards.Count; i++)
         {
             if (gameData.cardDataList.Cards[i].CardName == CardName)
             {

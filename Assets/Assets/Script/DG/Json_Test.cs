@@ -14,7 +14,7 @@ public class Json_Test : MonoBehaviour
     {
         GameData gameData = new GameData()
         {
-            playerData = new PlayerData("Player_Test", 30000 , 0 , 0),
+            playerData = new PlayerData("Player_Test", 30000 , 2 , 3),
             cardDataList = new CardDataList()
             {
                 Cards = new List<CardData>

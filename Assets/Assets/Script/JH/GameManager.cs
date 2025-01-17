@@ -123,8 +123,13 @@ public class GameManager : MonoBehaviour
 
     public void GameClear()
     {
+        Debug.Log(map);
+        Debug.Log(gameData.playerData.MaxMap);
+        
         if (map > gameData.playerData.MaxMap)
-        { 
+        {
+            Debug.Log("map");
+            Debug.Log(map);
             gameData.playerData.MaxMap = map;
             gameData.playerData.Money += 5000;
             SaveSystem.SavePlayerData(gameData, "save_1101"); // 파일저장

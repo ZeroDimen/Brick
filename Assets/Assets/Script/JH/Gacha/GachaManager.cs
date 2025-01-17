@@ -77,8 +77,10 @@ public class GachaManager : MonoBehaviour
         for (int i = 0; i < 9; i++)
         {
             string pick = wrPicker.GetRandomPick();
+            Read_GameData.instance.Save_Gacha_Result(pick);
             picks.Add(pick);
         }
+        SortCards.instance.Sorting();
     }
 
     public void Close_Panel()
