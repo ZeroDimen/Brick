@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     public GameObject[] stage;
     public GameObject clearPanel;
     public GameObject failPanel;
+    public GameObject[] grid;
+    public int _grid;
     private void Awake()
     {
         if (manager == null) manager = this;
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 8; i++)
             cardName[i] = gameData.cardDataList.Cards[i].CardName; // 이름
         stage[map].SetActive(true);
+        Brick.Bricks.Clear();
     }
     private void Update()
     {
@@ -46,6 +49,28 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1;
             play_time = 0;
+        }
+    }
+
+    public void Open_Grid(int height)
+    {
+        _grid = height;
+        MiniCam._grid = height;
+            
+        switch (height)
+        {
+            case 10:
+                grid[0].SetActive(true);
+                MiniCam.max = 0.9f;
+                break;
+            case 15:
+                grid[1].SetActive(true);
+                MiniCam.max = 5.8f;
+                break;
+            case 20:
+                grid[2].SetActive(true);
+                MiniCam.max = 11f;
+                break;
         }
     }
     
@@ -88,26 +113,14 @@ public class GameManager : MonoBehaviour
     }
     public void Ball_Reset()
     {
+        if (_state != State.Shoot)
+            return;
         foreach (var ball in Ball.balls)
         {
             if (ball != null)
                 Destroy(ball.gameObject);
         }
         Change_State(State.Standby);
-        Ninja_Ball.die_count = 0;
-        Ball.balls.Clear();
-        Ninja_Ball.Ninja.Clear();
-        MiniCam.posReset = true;
-        player = null;
-    }
-    public void Ball_Reset(State state = State.Play)
-    {
-        foreach (var ball in Ball.balls)
-        {
-            if (ball != null)
-                Destroy(ball.gameObject);
-        }
-        Change_State(State.Play);
         Ninja_Ball.die_count = 0;
         Ball.balls.Clear();
         Ninja_Ball.Ninja.Clear();

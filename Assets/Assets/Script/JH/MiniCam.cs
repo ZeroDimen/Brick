@@ -12,9 +12,12 @@ public class MiniCam : MonoBehaviour
     bool isDrag;
     public static bool posReset;
     public static bool thresholdFlag;
+    public static int _grid;
+    public static float max;
     private void Awake()
     {
         miniCam = GetComponent<Camera>();
+        thresholdFlag = false;
     }
     void Update()
     {
@@ -54,7 +57,7 @@ public class MiniCam : MonoBehaviour
             movement = currentMousePos.y - mousePos.y;
 
             // 스크롤 범위
-            newPosY = Mathf.Clamp(transform.position.y - movement, 0.9f, 21.5f);
+            newPosY = Mathf.Clamp(transform.position.y - movement, 0.9f, max);
 
             // 스크롤 이동
             newPos = transform.position;
@@ -81,6 +84,8 @@ public class MiniCam : MonoBehaviour
             {
                 Vector3 newVec = transform.position;
                 newVec.y = Mathf.Lerp(transform.position.y, GameManager.manager.player.transform.position.y, 0.05f);
+                if (max < newVec.y)
+                    newVec.y = max;
                 transform.position = newVec;
             }
         }
