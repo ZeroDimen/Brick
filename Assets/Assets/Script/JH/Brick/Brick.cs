@@ -54,8 +54,9 @@ public class Brick : MonoBehaviour
         if (curHp <= 0)
         {
             Bricks.Remove(this);
-            if(Bricks.Count == 0)
-                GameManager.manager.GameClearPanel();
+            if (Bricks.Count == 0)
+                GameManager.manager.Change_State(State.End);
+
             Destroy(gameObject);
         }
         else

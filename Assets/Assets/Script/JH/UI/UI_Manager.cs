@@ -58,6 +58,16 @@ public class UI_Manager : MonoBehaviour
             return true;
     }
 
+    public bool Is_Gauge_Zero()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (Card[i].transform.GetChild(0).GetComponent<Deck>().cost <= _gauge)
+                return false;
+        }
+        return true;
+    }
+
     public void Gauge(int n)
     {
         _gauge -= n;
@@ -178,90 +188,5 @@ public class UI_Manager : MonoBehaviour
     {
         Menu_Panel.SetActive(false);
         GameManager.manager.Change_State(State.Play);
-    }
-
-    public void Menu_Map()
-    {
-        Map.SetActive(true);
-        Menu.SetActive(false);
-    }
-
-    public void Select_Map_Stage_1()
-    {
-        Map_1.SetActive(true);
-        Select_Map.SetActive(false);
-    }
-    public void Select_Map_Stage_2()
-    {
-        Map_2.SetActive(true);
-        Select_Map.SetActive(false);
-    }
-    public void Select_Map_Stage_2_ver2()
-    {
-        Map_2_ver2.SetActive(true);
-        Select_Map.SetActive(false);
-    }
-    public void Select_Map_Stage_3()
-    {
-        Map_3.SetActive(true);
-        Select_Map.SetActive(false);
-    }
-    public void Select_Map_Back()
-    {
-        Menu.SetActive(true);
-        Map.SetActive(false);
-    }
-    public void Map_Back()
-    {
-        Select_Map.SetActive(true);
-        Map_1.SetActive(false);
-        Map_2.SetActive(false);
-        Map_2_ver2.SetActive(false);
-        Map_3.SetActive(false);
-    }
-    public void Map_Change(int stage, int n)
-    {
-        Default_Map.SetActive(false);
-        Gauge_Reset();
-        GameManager.manager.Ball_Reset(State.Play);
-        foreach (var d in Deck.Deck_List)
-            Destroy(d);
-        Deck.Deck_List.Clear();
-        Deck_Queue.Clear();
-        Add_Queue();
-        foreach (var card in Card)
-        {
-            GameObject obj = Instantiate(Decks[Deck_Queue.Dequeue()], card.transform.position, Quaternion.identity);
-            obj.transform.SetParent(card.transform);
-        }
-
-        foreach (var map in Maps_1)
-            map.SetActive(false);
-
-        foreach (var map in Maps_2)
-            map.SetActive(false);
-
-        foreach (var map in Maps_2_ver2)
-            map.SetActive(false);
-
-        foreach (var map in Maps_3)
-            map.SetActive(false);
-
-        switch (stage)
-        {
-            case 1:
-                Maps_1[n].SetActive(true);
-                break;
-            case 2:
-                Maps_2[n].SetActive(true);
-                break;
-            case 3:
-                Maps_3[n].SetActive(true);
-                break;
-            case 4:
-                Maps_2_ver2[n].SetActive(true);
-                break;
-        }
-        return;
     }
 }

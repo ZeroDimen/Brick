@@ -7,7 +7,8 @@ public enum State
     Play,
     Shoot,
     Standby,
-    Menu
+    Menu,
+    End
 }
 public class GameManager : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
     public string[] cardName = new string[8];
     public GameObject[] stage;
     public GameObject clearPanel;
-    
+    public GameObject failPanel;
     private void Awake()
     {
         if (manager == null) manager = this;
@@ -41,17 +42,13 @@ public class GameManager : MonoBehaviour
             if (play_time > 5)
                 Time.timeScale = 2;
         }
-        else
+        else if(_state != State.End)
         {
             Time.timeScale = 1;
             play_time = 0;
         }
     }
-
-    public void Game_ReStart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    
     public void Change_State(State state)
     {
         if (_state == state)
@@ -60,12 +57,24 @@ public class GameManager : MonoBehaviour
         if (_state == State.Shoot && state == State.Standby)
             player = null;
         if (_state == State.Standby && state == State.Play)
+        {
             UI_Manager.manager.DrawCard(UsedDeck);
-
+            if (UI_Manager.manager.Is_Gauge_Zero())
+            {
+                Time.timeScale = 0;
+                Game_Fail();
+            }
+        }
         if (state == State.Menu)
             Time.timeScale = 0;
         else
             Time.timeScale = 1;
+
+        if (state == State.End)
+        {
+            Time.timeScale = 0;
+            Game_Clear();
+        }
 
         _state = state;
     }
@@ -114,26 +123,34 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         HS_ProjectileMover.flag = false;
     }
-
-    public void GameClearPanel()
+    
+    public void Game_Clear()
     {
         clearPanel.SetActive(true);
-        Time.timeScale = 0;
-    }
-
-    public void GameClear()
-    {
-        Debug.Log(map);
-        Debug.Log(gameData.playerData.MaxMap);
-        
         if (map > gameData.playerData.MaxMap)
         {
-            Debug.Log("map");
-            Debug.Log(map);
             gameData.playerData.MaxMap = map;
             gameData.playerData.Money += 5000;
             SaveSystem.SavePlayerData(gameData, "save_1101"); // 파일저장
         }
+    }
+    public void Game_Next_Map()
+    {
+        gameData.playerData.Map++;
+        SaveSystem.SavePlayerData(gameData, "save_1101"); // 파일저장
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void Game_ReStart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void Game_Exit()
+    {
         SceneManager.LoadScene("Main_Scene");
+    }
+
+    public void Game_Fail()
+    {
+        failPanel.SetActive(true);
     }
 }
