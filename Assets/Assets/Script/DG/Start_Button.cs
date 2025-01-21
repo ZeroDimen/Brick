@@ -13,7 +13,7 @@ public class Start_Button : MonoBehaviour, IPointerClickHandler
         gameData = SaveSystem.LoadPlayerData("save_1101");
         gameData.playerData.Map = SelectMap.instance.map_number;
         SaveSystem.SavePlayerData(gameData, "save_1101");
-        Debug.Log("Start_Button : 저장완료");
+        Read_GameData.instance.Deck_None_Check();
         SceneManager.LoadScene("Version1"); // 게임(종현)씬 불러오기
     }
 }

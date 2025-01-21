@@ -5,16 +5,11 @@ using static Player_Data;
 
 public class Json_Test : MonoBehaviour
 {
-    private void Awake()
-    {
-        throw new NotImplementedException();
-    }
-
     public static void initData() // 테스트로 사용할 정보로 데이터 초기화
     {
         GameData gameData = new GameData()
         {
-            playerData = new PlayerData("Player_Test", 30000 , 2 , 3),
+            playerData = new PlayerData("Player_Test", 30000 , 0 , 0),
             cardDataList = new CardDataList()
             {
                 Cards = new List<CardData>

@@ -126,4 +126,19 @@ public class Read_GameData : MonoBehaviour
         SortCards.instance.Sorting(); // 카드 다시 출력
     }
     
+    public void Deck_None_Check()
+    {
+        CardData Normal_Data = Read_Card_Info("Normal");
+        gameData = SaveSystem.LoadPlayerData("save_1101");
+        
+        for (int i = 0; i < 8; i++)
+        {
+            if (gameData.cardDataList.Cards[i].CardName == "None")
+            {
+                gameData.cardDataList.Cards[i] = Normal_Data;
+            }
+        }
+        SaveSystem.SavePlayerData(gameData, "save_1101");
+    }
+    
 }

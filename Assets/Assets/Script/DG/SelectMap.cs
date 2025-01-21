@@ -26,7 +26,7 @@ public class SelectMap : MonoBehaviour
     private void Start()
     {
         gameData = SaveSystem.LoadPlayerData("save_1101");
-        map_number = gameData.playerData.Map;
+        map_number = gameData.playerData.MaxMap;
         SpawnMaps(); // 처음 보여줄 Map
     }
 

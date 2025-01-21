@@ -93,7 +93,8 @@ public class GameManager : MonoBehaviour
         if (state == State.Menu)
             Time.timeScale = 0;
         else
-            Time.timeScale = 1;
+            Time.timeScale = 1; 
+            
 
         if (state == State.End)
         {
@@ -140,11 +141,15 @@ public class GameManager : MonoBehaviour
     public void Game_Clear()
     {
         clearPanel.SetActive(true);
-        if (map > gameData.playerData.MaxMap)
+        if (map == gameData.playerData.MaxMap) // 맵 첫 클리어시
         {
-            gameData.playerData.MaxMap = map;
+            gameData.playerData.MaxMap++;
             gameData.playerData.Money += 5000;
             SaveSystem.SavePlayerData(gameData, "save_1101"); // 파일저장
+        }
+        else if (map > gameData.playerData.MaxMap)
+        {
+            Debug.Log("Game_Clear script error");
         }
     }
     public void Game_Next_Map()
