@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Player_Data;
 
 public class UI_Manager : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class UI_Manager : MonoBehaviour
     public Slider GaugeBar;
     public TMP_Text tMP_Text;
     public static UI_Manager manager;
+    private GameData gameData;
     float gauge = 100;
     float _gauge;
     public int UsedCard;
@@ -34,6 +36,7 @@ public class UI_Manager : MonoBehaviour
         if (manager == null) manager = this;
         else Destroy(gameObject);
 
+        gameData = SaveSystem.LoadPlayerData("save_1101"); // 파일 읽기 
         Add_Queue();
 
         _gauge = gauge;
@@ -103,25 +106,32 @@ public class UI_Manager : MonoBehaviour
             switch (cardName)
             {
                 case "Normal" :
+                    cardList[0].GetComponent<Deck>().cost = gameData.cardDataList.Cards[i].CardCost;
                     Decks[i] = cardList[0];
                     break;
                 case "Normal +" :
                     Decks[i] = cardList[1];
+                    cardList[1].GetComponent<Deck>().cost = gameData.cardDataList.Cards[i].CardCost;
                     break;
                 case "Ninja" :
                     Decks[i] = cardList[2];
+                    cardList[2].GetComponent<Deck>().cost = gameData.cardDataList.Cards[i].CardCost;
                     break;
                 case "Flame Magician" :
                     Decks[i] = cardList[3];
+                    cardList[3].GetComponent<Deck>().cost = gameData.cardDataList.Cards[i].CardCost;
                     break;
                 case "Archer" :
                     Decks[i] = cardList[4];
+                    cardList[4].GetComponent<Deck>().cost = gameData.cardDataList.Cards[i].CardCost;
                     break;
                 case "Big Head" :
                     Decks[i] = cardList[5];
+                    cardList[5].GetComponent<Deck>().cost = gameData.cardDataList.Cards[i].CardCost;
                     break;
                 case "Clock" :
                     Decks[i] = cardList[6];
+                    cardList[6].GetComponent<Deck>().cost = gameData.cardDataList.Cards[i].CardCost;
                     break;
             }
         }

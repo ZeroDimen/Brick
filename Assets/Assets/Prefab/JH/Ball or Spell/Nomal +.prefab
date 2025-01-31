@@ -255,8 +255,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
-  damage: 20
-  ball_Name: 
+  rayDirection: {x: 0, y: 0}
+  ball_Name: Normal +
+  a: 0
 --- !u!1 &6901288248417019882
 GameObject:
   m_ObjectHideFlags: 0

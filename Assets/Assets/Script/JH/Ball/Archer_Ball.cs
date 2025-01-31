@@ -6,7 +6,7 @@ public class Archer_Ball : Ball
 {
     protected override void Start()
     {
-        Brick.ball_Dmg = damage;
+        Brick.ball_Dmg = Read_GameData.instance.Read_Card_Info(ball_Name).CardDamage;
         miniCam = GameObject.Find("MiniCam").GetComponent<Camera>();
         lineRenderer = GetComponent<LineRenderer>();
         rigid = GetComponent<Rigidbody>();

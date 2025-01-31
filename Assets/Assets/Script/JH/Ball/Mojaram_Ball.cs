@@ -20,8 +20,7 @@ public class Mojaram_Ball : Ball
         base.OnCollisionEnter(other);
         if (other.collider.CompareTag("box"))
         {
-            damage += 1;
-            Brick.ball_Dmg = damage;
+            Brick.ball_Dmg += 1;
         }
     }
 }

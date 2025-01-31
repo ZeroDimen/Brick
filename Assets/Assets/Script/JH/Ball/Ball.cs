@@ -23,7 +23,6 @@ public class Ball : MonoBehaviour
     protected Vector2 previousMousePos;
 
     int pointIndex;
-    public float damage;
     protected float rayDistance = 30f;
     public string ball_Name;
 
@@ -32,7 +31,8 @@ public class Ball : MonoBehaviour
 
     protected virtual void Start()
     {
-        Brick.ball_Dmg = damage;
+        Brick.ball_Dmg = Read_GameData.instance.Read_Card_Info(ball_Name).CardDamage;
+        Debug.Log(Brick.ball_Dmg);
         miniCam = GameObject.Find("MiniCam").GetComponent<Camera>();
         lineRenderer = GetComponent<LineRenderer>();
         rigid = GetComponent<Rigidbody>();
