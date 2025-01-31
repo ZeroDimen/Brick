@@ -93,12 +93,12 @@ public class GameManager : MonoBehaviour
         if (state == State.Menu)
             Time.timeScale = 0;
         else
-            Time.timeScale = 1; 
+            Time.timeScale = 1;
             
 
         if (state == State.End)
         {
-            Time.timeScale = 0;
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             Game_Clear();
         }
 
@@ -164,6 +164,7 @@ public class GameManager : MonoBehaviour
     }
     public void Game_Exit()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Main_Scene");
     }
 

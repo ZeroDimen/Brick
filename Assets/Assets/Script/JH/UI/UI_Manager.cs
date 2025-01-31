@@ -43,8 +43,7 @@ public class UI_Manager : MonoBehaviour
         Add_Deck();
         foreach (var card in Card)
         {
-            GameObject obj = Instantiate(Decks[Deck_Queue.Dequeue()], card.transform.position, Quaternion.identity);
-            obj.transform.SetParent(card.transform);
+            GameObject obj = Instantiate(Decks[Deck_Queue.Dequeue()], card.transform.position, Quaternion.identity, card.transform);
         }
         GaugeBar.interactable = false;
         tMP_Text.text = $"{gauge}";
@@ -98,7 +97,6 @@ public class UI_Manager : MonoBehaviour
 
     void Add_Deck()
     {
-        Debug.Log(Decks.Length);
         for (int i = 0; i < 8; i++)
         {
             string cardName = GameManager.manager.cardName[i];
@@ -175,8 +173,7 @@ public class UI_Manager : MonoBehaviour
         Card[4].transform.GetChild(0).SetParent(Card[UsedCard].transform);
 
 
-        GameObject obj = Instantiate(Decks[Deck_Queue.Dequeue()], Card[4].transform.position, Quaternion.identity);
-        obj.transform.SetParent(Card[4].transform);
+        GameObject obj = Instantiate(Decks[Deck_Queue.Dequeue()], Card[4].transform.position, Quaternion.identity, Card[4].transform);
     }
     public void Menu_Open()
     {

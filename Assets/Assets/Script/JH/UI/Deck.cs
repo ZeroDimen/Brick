@@ -12,7 +12,7 @@ public class Deck : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     public GameObject card;
     GameObject obj;
     Camera miniCam;
-    public Vector2 defalutPos;
+    public Vector3 defalutPos;
     Vector2 curPos;
     Vector3 viewportPos;
     Image img;
@@ -23,7 +23,7 @@ public class Deck : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
     bool clickFlag;
 
     bool IsNextCard;
-
+    private RectTransform rt;
     private void Start()
     {
         Deck_List.Add(gameObject);
@@ -139,8 +139,12 @@ public class Deck : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         if (touchFlag)
         {
             curPos = eventData.position;
-            transform.position = curPos;
-
+            // transform.position = curPos;
+            Vector2 pos;
+            Camera cam = GameObject.Find("UI Camera").GetComponent<Camera>();
+            rt = transform.parent.GetComponent<RectTransform>();
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(rt, curPos, cam, out pos);
+            transform.GetComponent<RectTransform>().anchoredPosition = pos;
             viewportPos = miniCam.ScreenToViewportPoint(curPos);
 
             // 미니맵에 들어간 경우
