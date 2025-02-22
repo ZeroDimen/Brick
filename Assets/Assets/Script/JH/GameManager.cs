@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public GameObject failPanel;
     public GameObject[] grid;
     public int _grid;
+    public Camera miniCam;
     private void Awake()
     {
         if (manager == null) manager = this;
@@ -50,6 +51,10 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
             play_time = 0;
         }
+        
+        Debug.Log($"filed : {miniCam.fieldOfView}");
+        Debug.Log($"width : {Screen.height}");
+        miniCam.fieldOfView = Mathf.Lerp(60, 75, (Screen.height - 1920) / 480f * 0.7f);
     }
 
     public void Open_Grid(int height)
